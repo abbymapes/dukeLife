@@ -33,3 +33,4 @@ Desired parts of the app
 - Map and location with pictures
 - UI design 
 
+Group Members: Abby Mapes, Isabella Geraci, Ji Yun Hyo, Moses Fuego
