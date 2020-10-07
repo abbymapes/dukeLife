@@ -11,14 +11,13 @@ Architecture
     - Category
         - Restaurants, Study Spaces, Coffee Shops, Bars, Activities
 
-- Inputted popular places
-    - We will pre-populate database with popular places around Duke that we will gather from our peers  
-
-- Store user profiles
-    - User Profiles
-        - Logging in and out
-        - Signing up
-        - Duke account vs. guest account
+    - Inputted popular places
+        - We will pre-populate database with popular places around Duke that we will gather from our peers  
+    - Store user profiles
+- User Profiles
+    - Logging in and out
+    - Signing up
+    - Duke account vs. guest account
 - Yelp API
     - Provide general information about businesses in Durham
 - General Map
