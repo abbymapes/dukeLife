@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		192C4CFD2541EE140090886A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 192C4CFC2541EE140090886A /* GoogleService-Info.plist */; };
+		192C4CFE2541EE140090886A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 192C4CFC2541EE140090886A /* GoogleService-Info.plist */; };
+		192C4CFF2541EE140090886A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 192C4CFC2541EE140090886A /* GoogleService-Info.plist */; };
 		19A868F625363EA000F92B03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A868F525363EA000F92B03 /* AppDelegate.swift */; };
 		19A868F825363EA000F92B03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A868F725363EA000F92B03 /* SceneDelegate.swift */; };
 		19A868FA25363EA000F92B03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A868F925363EA000F92B03 /* ViewController.swift */; };
@@ -28,6 +31,9 @@
 		19A869492536425200F92B03 /* DukeLifeLogo(76x76).png in Resources */ = {isa = PBXBuildFile; fileRef = 19A8693D2536425200F92B03 /* DukeLifeLogo(76x76).png */; };
 		19A8694A2536425200F92B03 /* DukeLifeLogo(87x87).png in Resources */ = {isa = PBXBuildFile; fileRef = 19A8693E2536425200F92B03 /* DukeLifeLogo(87x87).png */; };
 		19A8694F2536428B00F92B03 /* DukeLifeLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 19A8694E2536428B00F92B03 /* DukeLifeLogo.png */; };
+		1ACD6B7BD031D90E181AAAA7 /* Pods_dukeLifeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90874FA06C4120B603BAFF5F /* Pods_dukeLifeTests.framework */; };
+		45CAC13B5CE6E72E1FB8DCC1 /* Pods_dukeLife_dukeLifeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 928465E209C0E9E560633BEF /* Pods_dukeLife_dukeLifeUITests.framework */; };
+		E6843F1936BB2B99C7FBCC42 /* Pods_dukeLife.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8035FCC82DB8E015710D37 /* Pods_dukeLife.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		192C4CFC2541EE140090886A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		19A868F225363EA000F92B03 /* dukeLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dukeLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19A868F525363EA000F92B03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19A868F725363EA000F92B03 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +82,15 @@
 		19A8693D2536425200F92B03 /* DukeLifeLogo(76x76).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DukeLifeLogo(76x76).png"; path = "../../Final Project/DukeLifeLogo(76x76).png"; sourceTree = "<group>"; };
 		19A8693E2536425200F92B03 /* DukeLifeLogo(87x87).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DukeLifeLogo(87x87).png"; path = "../../Final Project/DukeLifeLogo(87x87).png"; sourceTree = "<group>"; };
 		19A8694E2536428B00F92B03 /* DukeLifeLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DukeLifeLogo.png; path = "../../Final Project/DukeLifeLogo.png"; sourceTree = "<group>"; };
+		2C8035FCC82DB8E015710D37 /* Pods_dukeLife.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dukeLife.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		430AC6642EE2EC0CD97443F8 /* Pods-dukeLifeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dukeLifeTests.debug.xcconfig"; path = "Target Support Files/Pods-dukeLifeTests/Pods-dukeLifeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		69BEB218D402AEF2BCBCE99D /* Pods-dukeLife.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dukeLife.debug.xcconfig"; path = "Target Support Files/Pods-dukeLife/Pods-dukeLife.debug.xcconfig"; sourceTree = "<group>"; };
+		8E82B020950DE4A6D4F6B6A2 /* Pods-dukeLife-dukeLifeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dukeLife-dukeLifeUITests.debug.xcconfig"; path = "Target Support Files/Pods-dukeLife-dukeLifeUITests/Pods-dukeLife-dukeLifeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		90874FA06C4120B603BAFF5F /* Pods_dukeLifeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dukeLifeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		928465E209C0E9E560633BEF /* Pods_dukeLife_dukeLifeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dukeLife_dukeLifeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF58592D4D783B4BDCA53C7F /* Pods-dukeLifeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dukeLifeTests.release.xcconfig"; path = "Target Support Files/Pods-dukeLifeTests/Pods-dukeLifeTests.release.xcconfig"; sourceTree = "<group>"; };
+		DCE59D4B76501396AB1F1568 /* Pods-dukeLife.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dukeLife.release.xcconfig"; path = "Target Support Files/Pods-dukeLife/Pods-dukeLife.release.xcconfig"; sourceTree = "<group>"; };
+		EF5791FEDBA45CFFD85B261E /* Pods-dukeLife-dukeLifeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dukeLife-dukeLifeUITests.release.xcconfig"; path = "Target Support Files/Pods-dukeLife-dukeLifeUITests/Pods-dukeLife-dukeLifeUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6843F1936BB2B99C7FBCC42 /* Pods_dukeLife.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ACD6B7BD031D90E181AAAA7 /* Pods_dukeLifeTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,12 +114,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45CAC13B5CE6E72E1FB8DCC1 /* Pods_dukeLife_dukeLifeUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16CA429369F618F57E106421 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2C8035FCC82DB8E015710D37 /* Pods_dukeLife.framework */,
+				928465E209C0E9E560633BEF /* Pods_dukeLife_dukeLifeUITests.framework */,
+				90874FA06C4120B603BAFF5F /* Pods_dukeLifeTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		19A868E925363EA000F92B03 = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +138,8 @@
 				19A8690B25363EA100F92B03 /* dukeLifeTests */,
 				19A8691625363EA100F92B03 /* dukeLifeUITests */,
 				19A868F325363EA000F92B03 /* Products */,
+				3C979EDF290D63C789AFA165 /* Pods */,
+				16CA429369F618F57E106421 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -145,6 +176,7 @@
 				19A8693A2536425200F92B03 /* DukeLifeLogo(180X180).png */,
 				19A8690025363EA100F92B03 /* LaunchScreen.storyboard */,
 				19A8690325363EA100F92B03 /* Info.plist */,
+				192C4CFC2541EE140090886A /* GoogleService-Info.plist */,
 			);
 			path = dukeLife;
 			sourceTree = "<group>";
@@ -167,6 +199,20 @@
 			path = dukeLifeUITests;
 			sourceTree = "<group>";
 		};
+		3C979EDF290D63C789AFA165 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				69BEB218D402AEF2BCBCE99D /* Pods-dukeLife.debug.xcconfig */,
+				DCE59D4B76501396AB1F1568 /* Pods-dukeLife.release.xcconfig */,
+				8E82B020950DE4A6D4F6B6A2 /* Pods-dukeLife-dukeLifeUITests.debug.xcconfig */,
+				EF5791FEDBA45CFFD85B261E /* Pods-dukeLife-dukeLifeUITests.release.xcconfig */,
+				430AC6642EE2EC0CD97443F8 /* Pods-dukeLifeTests.debug.xcconfig */,
+				AF58592D4D783B4BDCA53C7F /* Pods-dukeLifeTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -174,9 +220,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 19A8691C25363EA100F92B03 /* Build configuration list for PBXNativeTarget "dukeLife" */;
 			buildPhases = (
+				F0708C9E23DBAC06166384CC /* [CP] Check Pods Manifest.lock */,
 				19A868EE25363EA000F92B03 /* Sources */,
 				19A868EF25363EA000F92B03 /* Frameworks */,
 				19A868F025363EA000F92B03 /* Resources */,
+				6FD03F7E5DBFD4A36E55F2A0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -191,6 +239,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 19A8691F25363EA100F92B03 /* Build configuration list for PBXNativeTarget "dukeLifeTests" */;
 			buildPhases = (
+				F5D7020B3C9F491FCCF83331 /* [CP] Check Pods Manifest.lock */,
 				19A8690425363EA100F92B03 /* Sources */,
 				19A8690525363EA100F92B03 /* Frameworks */,
 				19A8690625363EA100F92B03 /* Resources */,
@@ -209,9 +258,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 19A8692225363EA100F92B03 /* Build configuration list for PBXNativeTarget "dukeLifeUITests" */;
 			buildPhases = (
+				05D80764199EED387DFF7E46 /* [CP] Check Pods Manifest.lock */,
 				19A8690F25363EA100F92B03 /* Sources */,
 				19A8691025363EA100F92B03 /* Frameworks */,
 				19A8691125363EA100F92B03 /* Resources */,
+				B9273E436DD4F83F774813EC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -282,6 +333,7 @@
 				19A8693F2536425200F92B03 /* DukeLifeLogo(29x29).png in Resources */,
 				19A869492536425200F92B03 /* DukeLifeLogo(76x76).png in Resources */,
 				19A869462536425200F92B03 /* DukeLifeLogo(180X180).png in Resources */,
+				192C4CFD2541EE140090886A /* GoogleService-Info.plist in Resources */,
 				19A869402536425200F92B03 /* DukeLifeLogo(40X40).png in Resources */,
 				19A8694F2536428B00F92B03 /* DukeLifeLogo.png in Resources */,
 				19A869482536425200F92B03 /* DukeLifeLogo(58X58).png in Resources */,
@@ -293,6 +345,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				192C4CFE2541EE140090886A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,10 +353,114 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				192C4CFF2541EE140090886A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		05D80764199EED387DFF7E46 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-dukeLife-dukeLifeUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6FD03F7E5DBFD4A36E55F2A0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-dukeLife/Pods-dukeLife-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-dukeLife/Pods-dukeLife-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dukeLife/Pods-dukeLife-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B9273E436DD4F83F774813EC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-dukeLife-dukeLifeUITests/Pods-dukeLife-dukeLifeUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-dukeLife-dukeLifeUITests/Pods-dukeLife-dukeLifeUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dukeLife-dukeLifeUITests/Pods-dukeLife-dukeLifeUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F0708C9E23DBAC06166384CC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-dukeLife-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5D7020B3C9F491FCCF83331 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-dukeLifeTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		19A868EE25363EA000F92B03 /* Sources */ = {
@@ -485,6 +642,7 @@
 		};
 		19A8691D25363EA100F92B03 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69BEB218D402AEF2BCBCE99D /* Pods-dukeLife.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -503,6 +661,7 @@
 		};
 		19A8691E25363EA100F92B03 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DCE59D4B76501396AB1F1568 /* Pods-dukeLife.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -521,6 +680,7 @@
 		};
 		19A8692025363EA100F92B03 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 430AC6642EE2EC0CD97443F8 /* Pods-dukeLifeTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -542,6 +702,7 @@
 		};
 		19A8692125363EA100F92B03 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF58592D4D783B4BDCA53C7F /* Pods-dukeLifeTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -563,6 +724,7 @@
 		};
 		19A8692325363EA100F92B03 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E82B020950DE4A6D4F6B6A2 /* Pods-dukeLife-dukeLifeUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -582,6 +744,7 @@
 		};
 		19A8692425363EA100F92B03 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF5791FEDBA45CFFD85B261E /* Pods-dukeLife-dukeLifeUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
