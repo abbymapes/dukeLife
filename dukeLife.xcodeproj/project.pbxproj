@@ -3,13 +3,21 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		192C4CFD2541EE140090886A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 192C4CFC2541EE140090886A /* GoogleService-Info.plist */; };
 		192C4CFE2541EE140090886A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 192C4CFC2541EE140090886A /* GoogleService-Info.plist */; };
 		192C4CFF2541EE140090886A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 192C4CFC2541EE140090886A /* GoogleService-Info.plist */; };
+		1935C3DF25433D09003A8EA4 /* studentLogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1935C3DE25433D09003A8EA4 /* studentLogInViewController.swift */; };
+		1935C3E425433D17003A8EA4 /* guestLogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1935C3E325433D17003A8EA4 /* guestLogInViewController.swift */; };
+		1935C3E925433D24003A8EA4 /* studentSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1935C3E825433D24003A8EA4 /* studentSignUpViewController.swift */; };
+		1935C3EE25433D2F003A8EA4 /* guestSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1935C3ED25433D2F003A8EA4 /* guestSignUpViewController.swift */; };
+		1935C3F32543442C003A8EA4 /* launchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1935C3F22543442C003A8EA4 /* launchViewController.swift */; };
+		1935C3F8254346ED003A8EA4 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1935C3F7254346ED003A8EA4 /* Place.swift */; };
+		1935C3FD2543477C003A8EA4 /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1935C3FC2543477C003A8EA4 /* Coordinates.swift */; };
+		1935C402254347BB003A8EA4 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1935C401254347BB003A8EA4 /* Address.swift */; };
 		19A868F625363EA000F92B03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A868F525363EA000F92B03 /* AppDelegate.swift */; };
 		19A868F825363EA000F92B03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A868F725363EA000F92B03 /* SceneDelegate.swift */; };
 		19A868FA25363EA000F92B03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A868F925363EA000F92B03 /* ViewController.swift */; };
@@ -55,6 +63,14 @@
 
 /* Begin PBXFileReference section */
 		192C4CFC2541EE140090886A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1935C3DE25433D09003A8EA4 /* studentLogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studentLogInViewController.swift; sourceTree = "<group>"; };
+		1935C3E325433D17003A8EA4 /* guestLogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = guestLogInViewController.swift; sourceTree = "<group>"; };
+		1935C3E825433D24003A8EA4 /* studentSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studentSignUpViewController.swift; sourceTree = "<group>"; };
+		1935C3ED25433D2F003A8EA4 /* guestSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = guestSignUpViewController.swift; sourceTree = "<group>"; };
+		1935C3F22543442C003A8EA4 /* launchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = launchViewController.swift; sourceTree = "<group>"; };
+		1935C3F7254346ED003A8EA4 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		1935C3FC2543477C003A8EA4 /* Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinates.swift; sourceTree = "<group>"; };
+		1935C401254347BB003A8EA4 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		19A868F225363EA000F92B03 /* dukeLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dukeLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19A868F525363EA000F92B03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19A868F725363EA000F92B03 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -160,6 +176,14 @@
 				19A868F725363EA000F92B03 /* SceneDelegate.swift */,
 				19A868F925363EA000F92B03 /* ViewController.swift */,
 				19A868FB25363EA000F92B03 /* Main.storyboard */,
+				1935C3F22543442C003A8EA4 /* launchViewController.swift */,
+				1935C3F7254346ED003A8EA4 /* Place.swift */,
+				1935C3FC2543477C003A8EA4 /* Coordinates.swift */,
+				1935C401254347BB003A8EA4 /* Address.swift */,
+				1935C3DE25433D09003A8EA4 /* studentLogInViewController.swift */,
+				1935C3E325433D17003A8EA4 /* guestLogInViewController.swift */,
+				1935C3E825433D24003A8EA4 /* studentSignUpViewController.swift */,
+				1935C3ED25433D2F003A8EA4 /* guestSignUpViewController.swift */,
 				19A868FE25363EA100F92B03 /* Assets.xcassets */,
 				19A8694E2536428B00F92B03 /* DukeLifeLogo.png */,
 				19A869392536425200F92B03 /* DukeLifeLogo(20x20).png */,
@@ -209,7 +233,6 @@
 				430AC6642EE2EC0CD97443F8 /* Pods-dukeLifeTests.debug.xcconfig */,
 				AF58592D4D783B4BDCA53C7F /* Pods-dukeLifeTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -467,9 +490,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1935C3DF25433D09003A8EA4 /* studentLogInViewController.swift in Sources */,
 				19A868FA25363EA000F92B03 /* ViewController.swift in Sources */,
+				1935C3E925433D24003A8EA4 /* studentSignUpViewController.swift in Sources */,
 				19A868F625363EA000F92B03 /* AppDelegate.swift in Sources */,
+				1935C3EE25433D2F003A8EA4 /* guestSignUpViewController.swift in Sources */,
 				19A868F825363EA000F92B03 /* SceneDelegate.swift in Sources */,
+				1935C3F8254346ED003A8EA4 /* Place.swift in Sources */,
+				1935C3E425433D17003A8EA4 /* guestLogInViewController.swift in Sources */,
+				1935C3F32543442C003A8EA4 /* launchViewController.swift in Sources */,
+				1935C402254347BB003A8EA4 /* Address.swift in Sources */,
+				1935C3FD2543477C003A8EA4 /* Coordinates.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
