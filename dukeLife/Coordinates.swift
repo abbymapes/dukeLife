@@ -7,13 +7,13 @@
 
 import Foundation
 
-class Coordinates: Codable {
+class Coordinates {
     //MARK: Properties
-    var latitude: Decimal?
-    var longitude: Decimal?
+    var latitude: NSNumber?
+    var longitude: NSNumber?
     
     //MARK: Initializer
-    init?(latitude: Decimal, longitude: Decimal) {
+    init?(latitude: NSNumber, longitude: NSNumber) {
         self.latitude = latitude
         self.longitude = longitude
     }

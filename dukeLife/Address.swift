@@ -14,13 +14,12 @@ class Address: Codable {
     var address3: String?
     var city: String?
     var zip_code: String?
-    var country: String?
     var state: String?
     var display_address: [String]?
     
     //MARK: Initializer
-    init?(address1: String, address2: String, address3: String, city:String, zip_code:String, country:String, state:String, display_address: [String]) {
-        if (address1.isEmpty && address2.isEmpty && address3.isEmpty && city.isEmpty && zip_code.isEmpty && country.isEmpty && state.isEmpty) {
+    init?(address1: String, address2: String, address3: String, city:String, zip_code:String, state:String, display_address: [String]) {
+        if (address1.isEmpty && address2.isEmpty && address3.isEmpty && city.isEmpty && zip_code.isEmpty && state.isEmpty) {
             return nil;
         }
         self.address1 = address1
@@ -28,7 +27,6 @@ class Address: Codable {
         self.address3 = address3
         self.city = city
         self.zip_code = zip_code
-        self.country = country
         self.state = state
         self.display_address = display_address;
     }

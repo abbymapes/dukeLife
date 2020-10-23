@@ -8,6 +8,9 @@ target 'dukeLife' do
   pod 'Firebase/Auth'
   pod 'Firebase/Core'
   pod 'Firebase/Firestore'
+  pod 'Firebase/Database'
+  pod 'Firebase/Storage'
+  pod 'FirebaseFirestoreSwift'
 
   # Pods for dukeLife
 
