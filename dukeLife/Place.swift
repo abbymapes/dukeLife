@@ -18,6 +18,7 @@ class Place {
     var address: Address
     var coords: Coordinates
     var docId: String
+    var likeCount: NSNumber
     
     //MARK: Initializer
     init?(id: String, name: String, displayImg: String, url: String, phoneNum: String, address: Address, coords: Coordinates) {
@@ -32,11 +33,12 @@ class Place {
         self.address = address
         self.displayAddr = address.display_address!
         self.coords = coords
-        self.docId = "";
+        self.docId = ""
+        self.likeCount = 0
     }
     
     //MARK: Initializer
-    init?(id: String, name: String, displayImg: String, url: String, phoneNum: String, address: Address, coords: Coordinates, docId: String) {
+    init?(id: String, name: String, displayImg: String, url: String, phoneNum: String, address: Address, coords: Coordinates, docId: String, likeCount: NSNumber) {
         if (name.isEmpty) {
             return nil;
         }
@@ -48,6 +50,7 @@ class Place {
         self.address = address
         self.displayAddr = address.display_address!
         self.coords = coords
-        self.docId = docId;
+        self.docId = docId
+        self.likeCount = likeCount
     }
 }
