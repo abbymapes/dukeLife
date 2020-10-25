@@ -14,6 +14,8 @@ class studentMapViewController: UIViewController {
     var selectedType = ""
     var types = ["Food": "food", "Bars":"bars", "Fun": "fun", "Coffee": "coffee"]
     
+    var userId = "test"
+    
     @IBOutlet weak var resultsTableView: UITableView!
     
     @IBAction func typeSelector(_ sender: UISegmentedControl) {
@@ -29,8 +31,12 @@ class studentMapViewController: UIViewController {
             selectedType = "food"
         }
         loadPlaces()
-        //resultsTableView.reloadData()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadPlaces()
     }
     
 
@@ -101,13 +107,31 @@ extension studentMapViewController: UITableViewDataSource, UITableViewDelegate {
    }
     
    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let db = Firestore.firestore()
 
         // Configure the cell...
         let cell = tableView.dequeueReusableCell(withIdentifier: "placeCell", for: indexPath) as! placeTableViewCell
         
-    cell.name.text = "\(indexPath.row + 1). \(placeList[indexPath.row].name)"
+        cell.name.text = "\(indexPath.row + 1). \(placeList[indexPath.row].name)"
         cell.likeCount.text = "\(placeList[indexPath.row].likeCount)"
-        //cell.likeButton.image = heart.fill
+        
+        // Set like icon for user
+        db.collection("likes").whereField("placeId", isEqualTo: placeList[indexPath.row].docId)
+            .whereField("userId", isEqualTo: self.userId).getDocuments(){ (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    var count = 0;
+                    for document in querySnapshot!.documents {
+                        count += 1;
+                    }
+                    if (count > 0) {
+                        cell.likeButton.image = UIImage(systemName: "heart.fill")
+                    } else {
+                        cell.likeButton.image = UIImage(systemName: "heart")
+                    }
+                }
+        }
 
         return cell
     }
@@ -125,6 +149,7 @@ extension studentMapViewController: UITableViewDataSource, UITableViewDelegate {
         destVC.likeCountText = "\(place.likeCount)"
         destVC.urlText = place.url
         destVC.phoneNumberText = place.phoneNum
+
         let url = URL(string:place.displayImg)
         if (url != nil) {
             if let data = try? Data(contentsOf: url!)
@@ -164,5 +189,13 @@ extension studentMapViewController: UITableViewDataSource, UITableViewDelegate {
             }
         }
         destVC.addressText = addr
+        
+        let selectedCell = resultsTableView!.cellForRow(at: myRow!) as! placeTableViewCell
+        
+        var liked = true
+        if (selectedCell.likeButton.image == UIImage(systemName: "heart")) {
+            liked = false
+        }
+        destVC.isLiked = liked
     }
 }
