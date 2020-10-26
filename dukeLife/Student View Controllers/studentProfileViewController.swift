@@ -13,10 +13,12 @@ class studentProfileViewController: UIViewController {
     @IBOutlet weak var likedPlaces: UITableView!
     @IBOutlet weak var userName: UILabel!
 
+    // Replace with currentUserId when user log in is set up
     var currentUserId = "test"
     
+    // List of places the user likes
     var placesList = [Place]()
-    var namesList = [String]()
+    var idList = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,10 +26,8 @@ class studentProfileViewController: UIViewController {
         likedPlaces.dataSource = self
         loadUserInfo()
         loadLikedPlaces()
-        // Do any additional setup after loading the view.
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -38,47 +38,54 @@ class studentProfileViewController: UIViewController {
     }
     */
     
+    /*
+     Loads user netId from database
+     */
     func loadUserInfo() {
         let db = Firestore.firestore()
         let docRef = db.collection("students").document(currentUserId)
         
+        // Gets current user from database
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 let netId = document.data()!["netId"] as! String
                 self.userName.text = netId
             } else {
-                print("current user not found")
+                print("Current user not found")
             }
         }
     }
     
+    /*
+     Loads user's liked places from database
+     */
     func loadLikedPlaces() {
         let db = Firestore.firestore()
         self.placesList.removeAll()
-        self.namesList.removeAll()
+        self.idList.removeAll()
         var likedIds = [String]()
-        // Set like icon for user
+        
+        // Retrieve all ids for places the user likes
         db.collection("likes").whereField("userId", isEqualTo: self.currentUserId).order(by: "time", descending: true).getDocuments(){ (querySnapshot, err) in
                 if let err = err {
-                    print("Error getting documents: \(err)")
+                    print("Error getting liked places documents: \(err)")
                 } else {
                     for document in querySnapshot!.documents {
                         likedIds.append(document.data()["placeId"] as! String)
                     }
-                    
-                    
+    
                     let totalLikes = likedIds.count
                     var i = 1
                     
+                    // Go through each place the user likes and retrieve information about each place to create a Place object
                     for id in likedIds {
                         let docRef = db.collection("places").document(id)
-
                         docRef.getDocument { (document, error) in
                             if let document = document, document.exists {
+                                var id = document.documentID
                                 
-                                let name = document.data()!["name"] as! String
-                                
-                                if (!self.namesList.contains(name)) {
+                                if (!self.idList.contains(id)) {
+                                    let name = document.data()!["name"] as! String
                                     let address = Address.init(
                                         address1: document.data()!["address1"] as! String,
                                         address2: document.data()!["address2"] as! String,
@@ -100,23 +107,24 @@ class studentProfileViewController: UIViewController {
                                             longitude: document.data()!["longitude"] as! NSNumber)!,
                                         docId: document.documentID,
                                         likeCount: document.data()!["likeCount"] as! NSNumber)!
-                                    self.namesList.append(name)
+                                    self.idList.append(id)
                                     self.placesList.append(placeToDisplay)
                                     
+                                    // If we've reached the last place in the list, reload the data to display liked places
                                     if (i == totalLikes) {
                                         if self.placesList.count > 0 {
-                                            print("reloading data \(self.placesList.count)")
+                                            print("Reload liked places data \(self.placesList.count)")
                                             DispatchQueue.main.async {[weak self] in
                                                 self?.likedPlaces.reloadData()
                                             }
                                         } else {
-                                            print("not reloading data")
+                                            print("Not reloading liked places data, since none was found")
                                         }
                                     }
                                     i += 1
                                 }
                             } else {
-                                print("Document does not exist")
+                                print("Liked place does not exist for places ID")
                             }
                         }
                     }
@@ -125,7 +133,10 @@ class studentProfileViewController: UIViewController {
     }
 }
 
-extension studentProfileViewController: UITableViewDataSource, UITableViewDelegate {
+/*
+ * Set up table view for list of places the user likes
+ */
+extension studentProfileViewController: UITableViewDataSource, UITableViewDelegate, PlaceDetailViewControllerDelegate {
     
    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.placesList.count;
@@ -133,51 +144,39 @@ extension studentProfileViewController: UITableViewDataSource, UITableViewDelega
     
    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Configure the cell...
-        let db = Firestore.firestore()
-
-        // Configure the cell...
         let cell = tableView.dequeueReusableCell(withIdentifier: "placeCell", for: indexPath) as! placeTableViewCell
         
-    cell.name.text = "\(self.placesList[indexPath.row].name)"
+        cell.name.text = "\(self.placesList[indexPath.row].name)"
     
         cell.likeCount.text = "\(self.placesList[indexPath.row].likeCount)"
         
-        // Set like icon for user
-    db.collection("likes").whereField("placeId", isEqualTo: self.placesList[indexPath.row].docId)
-            .whereField("userId", isEqualTo: self.currentUserId).getDocuments(){ (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
-                    var count = 0;
-                    for document in querySnapshot!.documents {
-                        count += 1;
-                    }
-                    if (count > 0) {
-                        cell.likeButton.image = UIImage(systemName: "heart.fill")
-                    } else {
-                        cell.likeButton.image = UIImage(systemName: "heart")
-                    }
-                }
-        }
+        
+        // Set like icon for user to full heart, since user likes all places
+        cell.likeButton.image = UIImage(systemName: "heart.fill")
         return cell
     }
 
-
-    // MARK: - Navigation to Recipe List
+    // MARK: - Navigation to Place Information
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         let destVC = segue.destination as! studentPlaceDetailViewController
         let myRow = likedPlaces!.indexPathForSelectedRow
         let place = placesList[myRow!.row]
         
-        // Pass the selected object to the new view controller.
+        // Pass the selected information to the new view controller.
         destVC.docId = place.docId
         destVC.nameText = place.name
         destVC.likeCountText = "\(place.likeCount)"
         destVC.urlText = place.url
         destVC.phoneNumberText = place.phoneNum
-
-        let url = URL(string:place.displayImg)
+        
+        // Information to write likes back to list when users like
+        // a row
+        destVC.delegate = self
+        destVC.selectedIndex = myRow!.row
+        
+        // Get display information
+        let url = URL(string: place.displayImg)
         if (url != nil) {
             if let data = try? Data(contentsOf: url!)
             {
@@ -186,6 +185,8 @@ extension studentProfileViewController: UITableViewDataSource, UITableViewDelega
         } else {
             destVC.displayPicture = UIImage(named: "Default")!
         }
+        
+        // Create appropriate address
         var addr = "";
         if (place.address.display_address!.count > 0) {
             var j = 0;
@@ -217,12 +218,24 @@ extension studentProfileViewController: UITableViewDataSource, UITableViewDelega
         }
         destVC.addressText = addr
         
+        // Set like icon for page
         let selectedCell = likedPlaces!.cellForRow(at: myRow!) as! placeTableViewCell
-        
         var liked = true
         if (selectedCell.likeButton.image == UIImage(systemName: "heart")) {
             liked = false
         }
         destVC.isLiked = liked
+    }
+    
+    /*
+     * When a user likes a place from the page, this function is called to update the like count for the cell in the TableView
+     */
+    func update(index i: Int, count likeNum: NSNumber) {
+        print("Liked index in detail: \(i)")
+        placesList.remove(at:i)
+        print("Reloading liked places in profile after user has unliked a place")
+        DispatchQueue.main.async {[weak self] in
+            self?.likedPlaces.reloadData()
+        }
     }
 }
