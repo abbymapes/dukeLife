@@ -15,7 +15,7 @@ protocol PlaceDetailViewControllerDelegate: AnyObject {
     func update(index i: Int, count likeNum: NSNumber)
 }
 
-class studentPlaceDetailViewController: UIViewController {
+class studentPlaceDetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var likeCount: UILabel!
     @IBOutlet weak var displayImage: UIImageView!
@@ -25,6 +25,18 @@ class studentPlaceDetailViewController: UIViewController {
     @IBOutlet weak var commentInput: UITextField!
     @IBOutlet weak var commentTableView: UITableView!
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    @IBAction func hideKeyboard(_ sender: AnyObject) {
+      commentInput.endEditing(true)
+    }
+    @IBAction func returnKey(_ sender: Any) {
+        if (!commentInput.text!.isEmpty) {
+            saveComment(input: commentInput.text!)
+            commentInput.text = ""
+        }
+        commentInput.endEditing(true)
+    }
     // Replace with current user id when auth is set up
     var currentUserId = "test"
     
@@ -74,6 +86,14 @@ class studentPlaceDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
         commentTableView.delegate = self
         commentTableView.dataSource = self
+        
+        self.commentInput.delegate = self
+        
+        NotificationCenter.default.addObserver(self,selector: #selector(self.keyboardDidShow(notification:)),
+            name: UIResponder.keyboardDidShowNotification, object: nil)
+            NotificationCenter.default.addObserver(self,selector: #selector(self.keyboardDidHide(notification:)),
+            name: UIResponder.keyboardDidHideNotification, object: nil)
+        
         self.name.text = nameText
         self.address.text = addressText
         self.likeCount.text = likeCountText
@@ -262,12 +282,27 @@ class studentPlaceDetailViewController: UIViewController {
             }
         }
     }
+    
+    //MARK: Methods to manage keybaord
+    //MARK: Methods to manage keybaord
+    @objc func keyboardDidShow(notification: NSNotification) {
+        var info = notification.userInfo
+        let keyBoardSize = info![UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
+        scrollView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyBoardSize.height, right: 0.0)
+        scrollView.scrollIndicatorInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyBoardSize.height, right: 0.0)
+    }
+
+    @objc func keyboardDidHide(notification: NSNotification) {
+        
+        scrollView.contentInset = UIEdgeInsets.zero
+        scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
+    }
 }
 
 /*
  * Set up table view for list of comments for the place
  */
-extension studentPlaceDetailViewController: UITableViewDataSource, UITableViewDelegate {
+extension studentPlaceDetailViewController: UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.comments.count;
    }
@@ -302,5 +337,9 @@ extension studentPlaceDetailViewController: UITableViewDataSource, UITableViewDe
             destVC.name = selectedNetId
             destVC.userId = selectedUser
         }
+    }
+
+    func saveComment(input: String) {
+        print(input)
     }
 }
