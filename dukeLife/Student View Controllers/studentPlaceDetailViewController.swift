@@ -41,6 +41,11 @@ class studentPlaceDetailViewController: UIViewController {
     var displayPicture: UIImage = UIImage(named: "Default")!
     var isLiked = false;
     
+    @IBAction func imagePageButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "images", sender: nil)
+    }
+    
+    
     // Implement like button to add like to database and change appearance when places are liked or unliked
     // Updates information in TableView of Map Scene via delegate.update method
     @IBAction func likeButton(_ sender: UIButton) {
@@ -280,15 +285,22 @@ extension studentPlaceDetailViewController: UITableViewDataSource, UITableViewDe
     // Directs to the user who wrote the comment's profile
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
-        let destVC = segue.destination as! userProfileViewController
-        let myRow = commentTableView!.indexPathForSelectedRow
-        let comment = comments[myRow!.row]
-        
-        let selectedNetId = comment.netId
-        let selectedUser = comment.userId
-        
-        // Pass the selected object to the new view controller.
-        destVC.name = selectedNetId
-        destVC.userId = selectedUser
+        if segue.identifier == "images" {
+            let destVC = segue.destination as! studentImageCollectionViewController
+            destVC.placeId = docId
+            
+        // Segue to user page from comments
+        } else {
+            let destVC = segue.destination as! userProfileViewController
+            let myRow = commentTableView!.indexPathForSelectedRow
+            let comment = comments[myRow!.row]
+            
+            let selectedNetId = comment.netId
+            let selectedUser = comment.userId
+            
+            // Pass the selected object to the new view controller.
+            destVC.name = selectedNetId
+            destVC.userId = selectedUser
+        }
     }
 }

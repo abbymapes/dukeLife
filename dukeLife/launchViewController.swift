@@ -26,18 +26,29 @@ class launchViewController: UIViewController {
         var businesses:[business]
     }
     
+    struct ids {
+        var yelpId: String
+        var docId: String
+    }
+    
+    struct businessResponse: Codable {
+        var name: String?
+        var photos: [String]?
+    }
+    
+    var idsRead = [String]()
     var placeList = [Place]()
+    var idList = [ids]()
+    var photosFound = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //let db = Firestore.firestore()
         
         // DO NOT UNCOMMENT BELOW (DATABASE ALREADY ADDED / INITIALIZED WITH LOCATIONS
-        
         // Set up Database with locations from YelpAPI for each category
         /*
         // Set up Duke location
-        
+        let db = Firestore.firestore()
         let latitude = 36.0014
         let longitude = -78.9382
         let radius = 16093
@@ -154,7 +165,117 @@ class launchViewController: UIViewController {
         }
         dataTask.resume()
         */
+
+    // Adding Images from YELP API to Databse
+    // DO NOT UNCOMMENT BELOW (ALREADY ADDED IMAGES TO DATABASE)
+    
+    // Loop through all documents in database
+    /*
+    self.idsRead.removeAll()
+    self.idList.removeAll()
+    db.collection("places").getDocuments() { (querySnapshot, err) in
+        if let err = err {
+            print("Error getting documents: \(err)")
+        } else {
+            for document in querySnapshot!.documents {
+                let docId = document.documentID
+                if (!self.idsRead.contains(docId)) {
+                    self.idsRead.append(docId)
+                    let yelpId = document.data()["id"] as! String
+                    //let yelpId = "AdV3qLfQZVi3T7O-Y6qA8Q"
+                    let name = document.data()["name"] as! String
+                    let idToAdd = ids(yelpId: yelpId,
+                                      docId: docId)
+                    self.idList.append(idToAdd)
+                }
+            }
+            let dispatchGroup = DispatchGroup()
+            let dispatchQueue = DispatchQueue(label: "taskQueue")
+            let dispatchSemaphore = DispatchSemaphore(value: 0)
+            
+            var photosToAdd = 0;
+            dispatchQueue.async {
+                for id in self.idList {
+                    dispatchGroup.enter()
+                    let apikey = "Q2DSCs_0MgIdnj4RLvlehFC7McfEGtAp8JZi8AYffmqMPCcS7vlpLRNoGixr_bGRKRG3XsOmjb1rlrX_0RpzIHdZG5Mdmom3GgCWyDZn8CJXHrIeQP9S3Q2AbAeTX3Yx"
+
+                    let baseURL = "https://api.yelp.com/v3/businesses/\(id.yelpId)"
+                    print(baseURL)
+
+                    let url = URL(string: baseURL)
+
+                    var request = URLRequest(url: url!)
+                    request.setValue("Bearer \(apikey)", forHTTPHeaderField: "Authorization")
+                    request.httpMethod = "GET"
+                        
+                    let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                            if (error != nil) {
+                                print("Error = \(error!)")
+                                return
+                            }
+                            let response = response as! HTTPURLResponse
+                                
+                            // Ensure there is data returned from this HTTP response
+                            guard let content = data else {
+                                print("No results found")
+                                return
+                            }
+                            // Decode JSON response
+                            let decoder = JSONDecoder()
+                            do {
+                                let json = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                                    
+                                let response = try decoder.decode(businessResponse.self, from: content)
+                                    
+                                if (response.photos != nil) {
+                                    if (response.photos!.count == 0) {
+                                        print("No photos found for yelpID: \(id.yelpId)")
+                                    }
+                                    for image in response.photos! {
+                                        photosToAdd += 1
+                                        if (!self.photosFound.contains(id.yelpId)) {
+                                            self.photosFound.append(id.yelpId)
+                                        }
+                                            var ref: DocumentReference? = nil
+                                            ref = db.collection("images").addDocument(data: [
+                                                "imageUrl": image,
+                                                "placeId": id.docId,
+                                                "yelpId": id.yelpId])
+                                            { err in
+                                                if let err = err {
+                                                    print("Error adding document: \(err)")
+                                                } else {
+                                                    print("Photo added for yelpID: \(id.yelpId)")
+                                                }
+                                            }
+                                    }
+                                }
+                            } catch {
+                                print("JSON Decode error")
+                            }
+                            dispatchSemaphore.signal()
+                            dispatchGroup.leave()
+                        }
+                        dataTask.resume()
+                        dispatchSemaphore.wait()
+                    }
+            }
+            
+            dispatchGroup.notify(queue: dispatchQueue){
+                DispatchQueue.main.async {
+                    print("Finished all requests.")
+                    print("total # places: \(self.idList.count)")
+                    print("# places w photos: \(self.photosFound.count)")
+                    //print("# photos already in database: \(self.urlsInDatabase.count)")
+                    print("# photos added to database: \(photosToAdd)")
+                }
+            }
+            
+        }
+    }*/
+    
     }
+    
     
 
     /*

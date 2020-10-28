@@ -22,6 +22,7 @@
 		1935C4A5254389D7003A8EA4 /* studentMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1935C4A4254389D7003A8EA4 /* studentMapViewController.swift */; };
 		1935C4B02543BAD6003A8EA4 /* studentPlaceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1935C4AF2543BAD6003A8EA4 /* studentPlaceDetailViewController.swift */; };
 		1935C4B52543C455003A8EA4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1935C4B42543C455003A8EA4 /* Default-568h@2x.png */; };
+		195C11902549F93700DBAF49 /* studentImageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195C118F2549F93700DBAF49 /* studentImageCollectionViewController.swift */; };
 		196E153D254732A8009EA3AB /* guestProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196E153C254732A8009EA3AB /* guestProfileViewController.swift */; };
 		196E1542254732B5009EA3AB /* guestPlaceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196E1541254732B5009EA3AB /* guestPlaceDetailViewController.swift */; };
 		196E1547254732CF009EA3AB /* guestMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196E1546254732CF009EA3AB /* guestMapViewController.swift */; };
@@ -86,6 +87,7 @@
 		1935C4A4254389D7003A8EA4 /* studentMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studentMapViewController.swift; sourceTree = "<group>"; };
 		1935C4AF2543BAD6003A8EA4 /* studentPlaceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studentPlaceDetailViewController.swift; sourceTree = "<group>"; };
 		1935C4B42543C455003A8EA4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../hw3-live-api-app/Default-568h@2x.png"; sourceTree = "<group>"; };
+		195C118F2549F93700DBAF49 /* studentImageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studentImageCollectionViewController.swift; sourceTree = "<group>"; };
 		196E153C254732A8009EA3AB /* guestProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = guestProfileViewController.swift; sourceTree = "<group>"; };
 		196E1541254732B5009EA3AB /* guestPlaceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = guestPlaceDetailViewController.swift; sourceTree = "<group>"; };
 		196E1546254732CF009EA3AB /* guestMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = guestMapViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				19C81BCA254605A50016E6C2 /* userProfileViewController.swift */,
 				19C81BD52546205C0016E6C2 /* studentProfileViewController.swift */,
 				1935C4AF2543BAD6003A8EA4 /* studentPlaceDetailViewController.swift */,
+				195C118F2549F93700DBAF49 /* studentImageCollectionViewController.swift */,
 				1935C4A4254389D7003A8EA4 /* studentMapViewController.swift */,
 			);
 			path = "Student View Controllers";
@@ -572,6 +575,7 @@
 				1935C4B02543BAD6003A8EA4 /* studentPlaceDetailViewController.swift in Sources */,
 				19C81BC02545FFE80016E6C2 /* Comment.swift in Sources */,
 				19C81BD62546205C0016E6C2 /* studentProfileViewController.swift in Sources */,
+				195C11902549F93700DBAF49 /* studentImageCollectionViewController.swift in Sources */,
 				19C81BCB254605A50016E6C2 /* userProfileViewController.swift in Sources */,
 				1935C49B254382FE003A8EA4 /* placeTableViewCell.swift in Sources */,
 				1935C402254347BB003A8EA4 /* Address.swift in Sources */,
