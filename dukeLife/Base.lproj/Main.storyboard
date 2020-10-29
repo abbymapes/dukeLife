@@ -668,14 +668,20 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="acm103: &quot;My favorite study spot!&quot;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oHF-xL-DOS">
-                                                                    <rect key="frame" x="20" y="23.5" width="272.5" height="22"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="acm103: &quot;My favorite study spot!&quot;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="374" translatesAutoresizingMaskIntoConstraints="NO" id="oHF-xL-DOS">
+                                                                    <rect key="frame" x="20" y="24.5" width="374" height="21.5"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="374" id="pGv-MT-waL"/>
+                                                                    </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="oHF-xL-DOS" firstAttribute="leading" secondItem="hGI-VH-gHq" secondAttribute="leading" constant="20" symbolic="YES" id="Ipf-OC-oIO"/>
+                                                                <constraint firstItem="oHF-xL-DOS" firstAttribute="centerY" secondItem="hGI-VH-gHq" secondAttribute="centerY" id="r0L-nh-avs"/>
+                                                            </constraints>
                                                         </tableViewCellContentView>
                                                         <connections>
                                                             <outlet property="comment" destination="oHF-xL-DOS" id="cj8-Tg-cpf"/>
@@ -704,7 +710,7 @@
                                                 <rect key="frame" x="0.0" y="707" width="414" height="34"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                 <connections>
                                                     <action selector="returnKey:" destination="ZOb-Xv-TrV" eventType="primaryActionTriggered" id="30u-sk-jlg"/>
                                                 </connections>
@@ -1631,9 +1637,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xsS-64-UNY"/>
         <segue reference="FUw-Ed-bFr"/>
-        <segue reference="58P-YG-oC3"/>
+        <segue reference="IoX-zN-uP6"/>
         <segue reference="Mwl-YY-y5E"/>
     </inferredMetricsTieBreakers>
     <resources>

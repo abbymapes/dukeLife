@@ -38,7 +38,8 @@ class studentPlaceDetailViewController: UIViewController, UIScrollViewDelegate {
         commentInput.endEditing(true)
     }
     // Replace with current user id when auth is set up
-    var currentUserId = "test"
+    var currentUserId = ""
+    var currentUsername = ""
     
     weak var delegate: PlaceDetailViewControllerDelegate?
     var comments = [Comment]();
@@ -126,7 +127,7 @@ class studentPlaceDetailViewController: UIViewController, UIScrollViewDelegate {
     func loadComments() {
         let db = Firestore.firestore()
         // Queries all comments in database for current place ID ordered by time
-        db.collection("comments").whereField("placeId", isEqualTo: self.docId).order(by: "time", descending: true).getDocuments() { (querySnapshot, err) in
+        db.collection("comments").whereField("placeId", isEqualTo: self.docId).order(by: "time", descending: false).getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting comment documents: \(err)")
                 } else {
@@ -164,7 +165,7 @@ class studentPlaceDetailViewController: UIViewController, UIScrollViewDelegate {
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
-                    for document in querySnapshot!.documents {
+                    for _ in querySnapshot!.documents {
                         storedLikes += 1
                     }
                 }
@@ -284,9 +285,8 @@ class studentPlaceDetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     //MARK: Methods to manage keybaord
-    //MARK: Methods to manage keybaord
     @objc func keyboardDidShow(notification: NSNotification) {
-        var info = notification.userInfo
+        let info = notification.userInfo
         let keyBoardSize = info![UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
         scrollView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyBoardSize.height, right: 0.0)
         scrollView.scrollIndicatorInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyBoardSize.height, right: 0.0)
@@ -313,6 +313,32 @@ extension studentPlaceDetailViewController: UITableViewDataSource, UITableViewDe
         
         cell.comment.text = "\(comments[indexPath.row].netId): \(comments[indexPath.row].text)"
         return cell
+    }
+    
+    // Override to support conditional editing of the table view.
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        if (self.comments[indexPath.row].userId == self.currentUserId) {
+            return true
+        }
+        return false
+    }
+    
+    // Override to support editing the table view.
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let db = Firestore.firestore()
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            db.collection("comments").document(self.comments[indexPath.row].commentId).delete() { err in
+                if let err = err {
+                    print("Error removing comment document: \(err)")
+                } else {
+                    print("Comment was successfully removed!")
+                    self.comments.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+            }
+        }
     }
 
 
@@ -341,5 +367,34 @@ extension studentPlaceDetailViewController: UITableViewDataSource, UITableViewDe
 
     func saveComment(input: String) {
         print(input)
+        let db = Firestore.firestore()
+
+        // Get time
+        let timestamp = NSDate().timeIntervalSince1970
+        let myTimeInterval = TimeInterval(timestamp)
+        let time = NSDate(timeIntervalSince1970: TimeInterval(myTimeInterval))
+            
+        var ref: DocumentReference? = nil
+        ref = db.collection("comments").addDocument(data: [
+            "comment": input,
+            "netId": self.currentUsername,
+            "placeId": self.docId,
+            "time": time,
+            "userId": self.currentUserId
+        ])
+        { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Comment written with Document ID: \(ref!.documentID)")
+                let commentId = ref!.documentID
+                let newComment = Comment.init(text: input, netId: self.currentUsername, userId: self.currentUserId, commentId: commentId, placeId: self.docId)!
+                print(newComment)
+                self.comments.append(newComment)
+                DispatchQueue.main.async {[weak self] in
+                    self?.commentTableView.reloadData()
+                }
+            }
+        }
     }
 }

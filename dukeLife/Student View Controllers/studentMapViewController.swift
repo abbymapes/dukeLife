@@ -34,7 +34,8 @@ class studentMapViewController: UIViewController {
     var totalPlaces = 0
     
     // Replace with current user ID when auth is set up
-    var userId = "test"
+    var currentUserId = "test"
+    var currentUsername = "acm103"
     
     // Page buttons for results
     @IBOutlet weak var nextButton: UIButton!
@@ -234,7 +235,7 @@ extension studentMapViewController: UITableViewDataSource, UITableViewDelegate, 
         // Set like icon for user to filled heart if they like it and
         // hollow heart if they don't
         db.collection("likes").whereField("placeId", isEqualTo: placesDisplayed[indexPath.row].docId)
-            .whereField("userId", isEqualTo: self.userId).getDocuments(){ (querySnapshot, err) in
+            .whereField("userId", isEqualTo: self.currentUserId).getDocuments(){ (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
@@ -266,6 +267,8 @@ extension studentMapViewController: UITableViewDataSource, UITableViewDelegate, 
         destVC.likeCountText = "\(place.likeCount)"
         destVC.urlText = place.url
         destVC.phoneNumberText = place.phoneNum
+        destVC.currentUsername = self.currentUsername
+        destVC.currentUserId = self.currentUserId
         
         // Information to write likes back to list when users like
         // a row
