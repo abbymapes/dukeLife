@@ -293,7 +293,6 @@ class studentPlaceDetailViewController: UIViewController, UIScrollViewDelegate {
     }
 
     @objc func keyboardDidHide(notification: NSNotification) {
-        
         scrollView.contentInset = UIEdgeInsets.zero
         scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
     }
