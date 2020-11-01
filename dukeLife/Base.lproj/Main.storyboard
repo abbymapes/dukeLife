@@ -80,6 +80,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="First_name:" destination="MBN-s8-58S" eventType="editingDidEnd" id="Bs4-rD-e2d"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WAo-4E-ICd">
                                 <rect key="frame" x="20" y="139" width="374" height="66"/>
@@ -93,6 +96,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="Last_name:" destination="MBN-s8-58S" eventType="editingDidEnd" id="Z1V-ui-69P"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yzN-id-rdq">
                                 <rect key="frame" x="20" y="234" width="374" height="66"/>
@@ -106,6 +112,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="Email:" destination="MBN-s8-58S" eventType="editingDidEnd" id="eTy-HI-fxc"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SbV-gP-QHq">
                                 <rect key="frame" x="20" y="329" width="374" height="66"/>
@@ -119,6 +128,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="Password_guest:" destination="MBN-s8-58S" eventType="editingDidEnd" id="Tkl-Qr-BXa"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Confirm Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPH-6T-EXZ">
                                 <rect key="frame" x="20" y="424" width="374" height="66"/>
@@ -132,6 +144,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="Confirm_password_guest:" destination="MBN-s8-58S" eventType="editingDidEnd" id="4T3-Ld-lW0"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OV6-UC-gMp">
                                 <rect key="frame" x="112" y="551" width="190" height="47"/>
@@ -142,6 +157,7 @@
                                     <color key="titleColor" red="0.0" green="0.32549019610000002" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
+                                    <action selector="SignUp_guest:" destination="MBN-s8-58S" eventType="touchUpInside" id="PFH-rd-3yj"/>
                                     <segue destination="Gso-Ea-4yM" kind="show" id="Mwl-YY-y5E"/>
                                 </connections>
                             </button>
@@ -159,7 +175,7 @@
         <scene sceneID="he1-fU-mGJ">
             <objects>
                 <viewController id="Q9Q-8M-WFH" customClass="studentSignUpViewController" customModule="dukeLife" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Uhm-xX-ZAg">
+                    <view key="view" contentMode="scaleToFill" id="Uhm-xX-ZAg" customClass="student">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -182,12 +198,18 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="PassWord:" destination="Q9Q-8M-WFH" eventType="editingDidEnd" id="gmM-Rd-7x8"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Blg-f8-V7R">
                                 <rect key="frame" x="20" y="444" width="374" height="38.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="Confirm_Password:" destination="Q9Q-8M-WFH" eventType="editingDidEnd" id="I8M-cW-f1b"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QSK-vR-AZ8">
                                 <rect key="frame" x="112" y="512" width="190" height="41"/>
@@ -198,6 +220,7 @@
                                     <color key="titleColor" red="0.0" green="0.32549019610000002" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
+                                    <action selector="SignUp_Button:" destination="Q9Q-8M-WFH" eventType="touchUpInside" id="mjA-TP-Z57"/>
                                     <segue destination="w1G-rC-u5Q" kind="show" id="FUw-Ed-bFr"/>
                                 </connections>
                             </button>
@@ -206,6 +229,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="netID:" destination="Q9Q-8M-WFH" eventType="editingDidEnd" id="Saq-7O-Ey3"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="netID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hq5-hv-vVU">
                                 <rect key="frame" x="20" y="241" width="56" height="29"/>
@@ -219,6 +245,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="Duke_email:" destination="Q9Q-8M-WFH" eventType="editingDidEnd" id="hR9-e1-Eic"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Duke Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nKA-83-lD3">
                                 <rect key="frame" x="20" y="157" width="115" height="29"/>
@@ -1235,6 +1264,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="Email:" destination="Xz5-Ck-XcH" eventType="editingDidEnd" id="2B8-tT-bYk"/>
+                                    <action selector="Email:" destination="tTj-x2-wu1" eventType="editingDidEnd" id="pbL-eQ-VHX"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CXK-if-YiV">
                                 <rect key="frame" x="20" y="330" width="374" height="66"/>
@@ -1248,6 +1281,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="Password:" destination="tTj-x2-wu1" eventType="editingDidEnd" id="06l-S8-Gfv"/>
+                                    <action selector="Password:" destination="Xz5-Ck-XcH" eventType="editingDidEnd" id="NK3-Cc-rGN"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCy-aS-1Ut">
                                 <rect key="frame" x="112" y="449" width="190" height="57"/>
@@ -1258,6 +1295,8 @@
                                     <color key="titleColor" red="0.0" green="0.32549019610000002" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
+                                    <action selector="LogIN:" destination="tTj-x2-wu1" eventType="touchUpInside" id="r88-oV-Cuz"/>
+                                    <action selector="Login_guest:" destination="Xz5-Ck-XcH" eventType="touchUpInside" id="ttO-t4-3yI"/>
                                     <segue destination="Gso-Ea-4yM" kind="show" id="5Db-CS-nKI"/>
                                 </connections>
                             </button>
@@ -1268,6 +1307,7 @@
                     <tabBarItem key="tabBarItem" title="Guest" selectedImage="person.circle.fill" catalog="system" id="e86-xl-yS5"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Itb-z5-uqO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="tTj-x2-wu1" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1922" y="-185"/>
         </scene>
@@ -1275,7 +1315,7 @@
         <scene sceneID="o7C-Jb-miH">
             <objects>
                 <viewController id="1zA-Sd-9la" customClass="studentLogInViewController" customModule="dukeLife" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="QZ1-OC-Uup">
+                    <view key="view" contentMode="scaleToFill" id="QZ1-OC-Uup" customClass="StudentLoginViewController">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1291,6 +1331,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="NET_ID_FIELD:" destination="Tdu-Xj-krb" eventType="editingDidEnd" id="k6c-eZ-vaS"/>
+                                    <action selector="NetID_field:" destination="1zA-Sd-9la" eventType="editingDidEnd" id="IQP-vI-onO"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gDx-ug-AJp">
                                 <rect key="frame" x="20" y="323" width="374" height="66"/>
@@ -1304,6 +1348,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="PassWord:" destination="Tdu-Xj-krb" eventType="editingDidEnd" id="PUQ-Yy-Wba"/>
+                                    <action selector="Password_field:" destination="1zA-Sd-9la" eventType="editingDidEnd" id="aix-NO-Nm0"/>
+                                    <action selector="Password_field:" destination="Tdu-Xj-krb" eventType="editingDidEnd" id="iYZ-U6-9JF"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ysH-NE-ftX">
                                 <rect key="frame" x="112" y="433" width="190" height="57"/>
@@ -1314,6 +1363,8 @@
                                     <color key="titleColor" red="0.0" green="0.32549019610000002" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
+                                    <action selector="Log_IN_button:" destination="Tdu-Xj-krb" eventType="touchUpInside" id="cjE-4h-Z2W"/>
+                                    <action selector="Log_in_button:" destination="1zA-Sd-9la" eventType="touchUpInside" id="6E2-7J-zXE"/>
                                     <segue destination="w1G-rC-u5Q" kind="show" id="qBa-tV-yRQ"/>
                                 </connections>
                             </button>
@@ -1324,6 +1375,7 @@
                     <tabBarItem key="tabBarItem" title="Student" selectedImage="studentdesk" catalog="system" id="l6W-hu-Mge"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fr2-ll-aHu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Tdu-Xj-krb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1922" y="-855"/>
         </scene>

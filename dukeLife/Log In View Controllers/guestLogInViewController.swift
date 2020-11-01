@@ -15,7 +15,13 @@ class guestLogInViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func Email(_ sender: UITextField) {
+    }
+    
+    @IBAction func Password(_ sender: UITextField) {
+    }
+    @IBAction func Login_guest(_ sender: Any) {
+    }
     /*
     // MARK: - Navigation
 

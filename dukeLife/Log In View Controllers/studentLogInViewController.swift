@@ -16,8 +16,18 @@ class studentLogInViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
+    @IBAction func NetID_field(_ sender: UITextField) {
+    }
+    
+     @IBAction func Password_field(_ sender: UITextField) {
+     }
+     
+    
+    @IBAction func Log_in_button(_ sender: Any) {
+       
+    }
+    
+    *// MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

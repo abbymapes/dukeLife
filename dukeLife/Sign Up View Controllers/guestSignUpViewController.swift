@@ -15,7 +15,20 @@ class guestSignUpViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func First_name(_ sender: UITextField) {
+    }
+    
+    @IBAction func Last_name(_ sender: UITextField) {
+    }
+    @IBAction func Email(_ sender: UITextField) {
+    }
+    @IBAction func Password_guest(_ sender: UITextField) {
+    }
+    
+    @IBAction func Confirm_password_guest(_ sender: UITextField) {
+    }
+    @IBAction func SignUp_guest(_ sender: Any) {
+    }
     /*
     // MARK: - Navigation
 
