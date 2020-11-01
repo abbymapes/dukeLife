@@ -45,7 +45,7 @@ class studentSignUpViewController: UIViewController {
             print("Please confirm password")
             return
     }
-        if Password_stud.text != Confirm_Password_Stud.text == true {
+        if (Password_stud.text != Confirm_Password_Stud.text) == true {
             print("Make sure passwords match")
             return
         }
@@ -62,4 +62,5 @@ class studentSignUpViewController: UIViewController {
     }
     */
 
+}
 }

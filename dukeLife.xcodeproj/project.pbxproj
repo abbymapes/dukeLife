@@ -21,7 +21,6 @@
 		1935C49B254382FE003A8EA4 /* placeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1935C49A254382FE003A8EA4 /* placeTableViewCell.swift */; };
 		1935C4A5254389D7003A8EA4 /* studentMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1935C4A4254389D7003A8EA4 /* studentMapViewController.swift */; };
 		1935C4B02543BAD6003A8EA4 /* studentPlaceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1935C4AF2543BAD6003A8EA4 /* studentPlaceDetailViewController.swift */; };
-		1935C4B52543C455003A8EA4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1935C4B42543C455003A8EA4 /* Default-568h@2x.png */; };
 		195C11902549F93700DBAF49 /* studentImageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195C118F2549F93700DBAF49 /* studentImageCollectionViewController.swift */; };
 		196E153D254732A8009EA3AB /* guestProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196E153C254732A8009EA3AB /* guestProfileViewController.swift */; };
 		196E1542254732B5009EA3AB /* guestPlaceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196E1541254732B5009EA3AB /* guestPlaceDetailViewController.swift */; };
@@ -34,13 +33,13 @@
 		19A8690225363EA100F92B03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19A8690025363EA100F92B03 /* LaunchScreen.storyboard */; };
 		19A8690D25363EA100F92B03 /* dukeLifeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A8690C25363EA100F92B03 /* dukeLifeTests.swift */; };
 		19A8691825363EA100F92B03 /* dukeLifeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A8691725363EA100F92B03 /* dukeLifeUITests.swift */; };
-		19A8693F2536425200F92B03 /* DukeLifeLogo(29x29).png in Resources */ = {isa = PBXBuildFile; fileRef = 19A869332536425200F92B03 /* DukeLifeLogo(29x29).png */; };
+		19A8693F2536425200F92B03 /* Final Project in Resources */ = {isa = PBXBuildFile; fileRef = 19A869332536425200F92B03 /* Final Project */; };
 		19A869402536425200F92B03 /* DukeLifeLogo(40X40).png in Resources */ = {isa = PBXBuildFile; fileRef = 19A869342536425200F92B03 /* DukeLifeLogo(40X40).png */; };
 		19A869412536425200F92B03 /* DukeLifeLogo(152x152).png in Resources */ = {isa = PBXBuildFile; fileRef = 19A869352536425200F92B03 /* DukeLifeLogo(152x152).png */; };
 		19A869422536425200F92B03 /* DukeLifeLogo(120x120).png in Resources */ = {isa = PBXBuildFile; fileRef = 19A869362536425200F92B03 /* DukeLifeLogo(120x120).png */; };
 		19A869432536425200F92B03 /* DukeLifeLogo(80x80).png in Resources */ = {isa = PBXBuildFile; fileRef = 19A869372536425200F92B03 /* DukeLifeLogo(80x80).png */; };
 		19A869442536425200F92B03 /* DukeLifeLogo(60X60).png in Resources */ = {isa = PBXBuildFile; fileRef = 19A869382536425200F92B03 /* DukeLifeLogo(60X60).png */; };
-		19A869452536425200F92B03 /* DukeLifeLogo(20x20).png in Resources */ = {isa = PBXBuildFile; fileRef = 19A869392536425200F92B03 /* DukeLifeLogo(20x20).png */; };
+		19A869452536425200F92B03 /* Final Project in Resources */ = {isa = PBXBuildFile; fileRef = 19A869392536425200F92B03 /* Final Project */; };
 		19A869462536425200F92B03 /* DukeLifeLogo(180X180).png in Resources */ = {isa = PBXBuildFile; fileRef = 19A8693A2536425200F92B03 /* DukeLifeLogo(180X180).png */; };
 		19A869472536425200F92B03 /* DukeLifeLogo(167x167).png in Resources */ = {isa = PBXBuildFile; fileRef = 19A8693B2536425200F92B03 /* DukeLifeLogo(167x167).png */; };
 		19A869482536425200F92B03 /* DukeLifeLogo(58X58).png in Resources */ = {isa = PBXBuildFile; fileRef = 19A8693C2536425200F92B03 /* DukeLifeLogo(58X58).png */; };
@@ -86,7 +85,6 @@
 		1935C49A254382FE003A8EA4 /* placeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = placeTableViewCell.swift; sourceTree = "<group>"; };
 		1935C4A4254389D7003A8EA4 /* studentMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studentMapViewController.swift; sourceTree = "<group>"; };
 		1935C4AF2543BAD6003A8EA4 /* studentPlaceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studentPlaceDetailViewController.swift; sourceTree = "<group>"; };
-		1935C4B42543C455003A8EA4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../hw3-live-api-app/Default-568h@2x.png"; sourceTree = "<group>"; };
 		195C118F2549F93700DBAF49 /* studentImageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studentImageCollectionViewController.swift; sourceTree = "<group>"; };
 		196E153C254732A8009EA3AB /* guestProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = guestProfileViewController.swift; sourceTree = "<group>"; };
 		196E1541254732B5009EA3AB /* guestPlaceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = guestPlaceDetailViewController.swift; sourceTree = "<group>"; };
@@ -105,13 +103,13 @@
 		19A8691325363EA100F92B03 /* dukeLifeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dukeLifeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		19A8691725363EA100F92B03 /* dukeLifeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dukeLifeUITests.swift; sourceTree = "<group>"; };
 		19A8691925363EA100F92B03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		19A869332536425200F92B03 /* DukeLifeLogo(29x29).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DukeLifeLogo(29x29).png"; path = "../../Final Project/DukeLifeLogo(29x29).png"; sourceTree = "<group>"; };
+		19A869332536425200F92B03 /* Final Project */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Final Project"; path = "../Final Project"; sourceTree = "<group>"; };
 		19A869342536425200F92B03 /* DukeLifeLogo(40X40).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DukeLifeLogo(40X40).png"; path = "../../Final Project/DukeLifeLogo(40X40).png"; sourceTree = "<group>"; };
 		19A869352536425200F92B03 /* DukeLifeLogo(152x152).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DukeLifeLogo(152x152).png"; path = "../../Final Project/DukeLifeLogo(152x152).png"; sourceTree = "<group>"; };
 		19A869362536425200F92B03 /* DukeLifeLogo(120x120).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DukeLifeLogo(120x120).png"; path = "../../Final Project/DukeLifeLogo(120x120).png"; sourceTree = "<group>"; };
 		19A869372536425200F92B03 /* DukeLifeLogo(80x80).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DukeLifeLogo(80x80).png"; path = "../../Final Project/DukeLifeLogo(80x80).png"; sourceTree = "<group>"; };
 		19A869382536425200F92B03 /* DukeLifeLogo(60X60).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DukeLifeLogo(60X60).png"; path = "../../Final Project/DukeLifeLogo(60X60).png"; sourceTree = "<group>"; };
-		19A869392536425200F92B03 /* DukeLifeLogo(20x20).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DukeLifeLogo(20x20).png"; path = "../../Final Project/DukeLifeLogo(20x20).png"; sourceTree = "<group>"; };
+		19A869392536425200F92B03 /* Final Project */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Final Project"; path = "../Final Project"; sourceTree = "<group>"; };
 		19A8693A2536425200F92B03 /* DukeLifeLogo(180X180).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DukeLifeLogo(180X180).png"; path = "../../Final Project/DukeLifeLogo(180X180).png"; sourceTree = "<group>"; };
 		19A8693B2536425200F92B03 /* DukeLifeLogo(167x167).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DukeLifeLogo(167x167).png"; path = "../../Final Project/DukeLifeLogo(167x167).png"; sourceTree = "<group>"; };
 		19A8693C2536425200F92B03 /* DukeLifeLogo(58X58).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DukeLifeLogo(58X58).png"; path = "../../Final Project/DukeLifeLogo(58X58).png"; sourceTree = "<group>"; };
@@ -252,10 +250,9 @@
 				1935C3FC2543477C003A8EA4 /* Coordinates.swift */,
 				1935C401254347BB003A8EA4 /* Address.swift */,
 				19A868FE25363EA100F92B03 /* Assets.xcassets */,
-				1935C4B42543C455003A8EA4 /* Default-568h@2x.png */,
 				19A8694E2536428B00F92B03 /* DukeLifeLogo.png */,
-				19A869392536425200F92B03 /* DukeLifeLogo(20x20).png */,
-				19A869332536425200F92B03 /* DukeLifeLogo(29x29).png */,
+				19A869392536425200F92B03 /* Final Project */,
+				19A869332536425200F92B03 /* Final Project */,
 				19A869342536425200F92B03 /* DukeLifeLogo(40X40).png */,
 				19A8693C2536425200F92B03 /* DukeLifeLogo(58X58).png */,
 				19A869382536425200F92B03 /* DukeLifeLogo(60X60).png */,
@@ -421,15 +418,14 @@
 				19A869442536425200F92B03 /* DukeLifeLogo(60X60).png in Resources */,
 				19A869412536425200F92B03 /* DukeLifeLogo(152x152).png in Resources */,
 				19A869432536425200F92B03 /* DukeLifeLogo(80x80).png in Resources */,
-				19A8693F2536425200F92B03 /* DukeLifeLogo(29x29).png in Resources */,
+				19A8693F2536425200F92B03 /* Final Project in Resources */,
 				19A869492536425200F92B03 /* DukeLifeLogo(76x76).png in Resources */,
-				1935C4B52543C455003A8EA4 /* Default-568h@2x.png in Resources */,
 				19A869462536425200F92B03 /* DukeLifeLogo(180X180).png in Resources */,
 				192C4CFD2541EE140090886A /* GoogleService-Info.plist in Resources */,
 				19A869402536425200F92B03 /* DukeLifeLogo(40X40).png in Resources */,
 				19A8694F2536428B00F92B03 /* DukeLifeLogo.png in Resources */,
 				19A869482536425200F92B03 /* DukeLifeLogo(58X58).png in Resources */,
-				19A869452536425200F92B03 /* DukeLifeLogo(20x20).png in Resources */,
+				19A869452536425200F92B03 /* Final Project in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
