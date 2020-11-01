@@ -161,6 +161,15 @@
                                     <segue destination="Gso-Ea-4yM" kind="show" id="Mwl-YY-y5E"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C9G-W4-JHI">
+                                <rect key="frame" x="48" y="660" width="319" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" label="Already have an account?"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Already have an account?">
+                                    <color key="titleColor" systemColor="secondarySystemBackgroundColor"/>
+                                </state>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tmo-Jn-Pss"/>
                         <color key="backgroundColor" red="0.0" green="0.32549019610000002" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -221,6 +230,7 @@
                                 </state>
                                 <connections>
                                     <action selector="SignUp_Button:" destination="Q9Q-8M-WFH" eventType="touchUpInside" id="mjA-TP-Z57"/>
+                                    <action selector="SignUp_student:" destination="Q9Q-8M-WFH" eventType="touchUpInside" id="1P3-X7-9ah"/>
                                     <segue destination="w1G-rC-u5Q" kind="show" id="FUw-Ed-bFr"/>
                                 </connections>
                             </button>
@@ -256,11 +266,26 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qUx-ER-wSS">
+                                <rect key="frame" x="48" y="636" width="319" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" label="Already have an account?"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Already have an account?">
+                                    <color key="titleColor" systemColor="secondarySystemBackgroundColor"/>
+                                </state>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lJh-I1-Fi0"/>
                         <color key="backgroundColor" red="0.0" green="0.32549019610000002" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Student" selectedImage="studentdesk" catalog="system" id="dkh-9Y-fU5"/>
+                    <connections>
+                        <outlet property="Confirm_Password" destination="Blg-f8-V7R" id="eQq-58-KlM"/>
+                        <outlet property="Duke_Email" destination="SoM-RN-urG" id="wPW-Rg-fEq"/>
+                        <outlet property="Password" destination="KV2-mA-Rod" id="FPh-do-dp2"/>
+                        <outlet property="netID" destination="5ic-JK-bPJ" id="kVt-wn-nnf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R4w-Ue-Orx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1709,6 +1734,9 @@
         <image name="studentdesk" catalog="system" width="124" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
