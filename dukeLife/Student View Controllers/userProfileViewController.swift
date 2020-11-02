@@ -20,7 +20,8 @@ class userProfileViewController: UIViewController {
     var userId = ""
     
     // Replaced with current userId once we set up log in
-    var currentId = "tester"
+    var currentUserId = "tester"
+    var currentUsername = "cw1"
     
     var placesList = [Place]()
     var idList = [String]()
@@ -130,7 +131,7 @@ extension userProfileViewController: UITableViewDataSource, UITableViewDelegate,
         
         // Set appropriate like icon for user based on if they like the place
         db.collection("likes").whereField("placeId", isEqualTo: self.placesList[indexPath.row].docId)
-            .whereField("userId", isEqualTo: self.currentId).getDocuments(){ (querySnapshot, err) in
+            .whereField("userId", isEqualTo: self.currentUserId).getDocuments(){ (querySnapshot, err) in
                 if let err = err {
                     print("Error getting likes for place: \(err)")
                 } else {
@@ -162,6 +163,8 @@ extension userProfileViewController: UITableViewDataSource, UITableViewDelegate,
         destVC.likeCountText = "\(place.likeCount)"
         destVC.urlText = place.url
         destVC.phoneNumberText = place.phoneNum
+        destVC.currentUsername = self.currentUsername
+        destVC.currentUserId = self.currentUserId
         
         // Information to write likes back to list when users like
         // a row

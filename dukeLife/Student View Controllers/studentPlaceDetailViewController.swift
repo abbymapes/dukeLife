@@ -87,12 +87,11 @@ class studentPlaceDetailViewController: UIViewController, UIScrollViewDelegate {
         // Do any additional setup after loading the view.
         commentTableView.delegate = self
         commentTableView.dataSource = self
-        
         self.commentInput.delegate = self
         
         NotificationCenter.default.addObserver(self,selector: #selector(self.keyboardDidShow(notification:)),
             name: UIResponder.keyboardDidShowNotification, object: nil)
-            NotificationCenter.default.addObserver(self,selector: #selector(self.keyboardDidHide(notification:)),
+        NotificationCenter.default.addObserver(self,selector: #selector(self.keyboardDidHide(notification:)),
             name: UIResponder.keyboardDidHideNotification, object: nil)
         
         self.name.text = nameText
@@ -302,6 +301,7 @@ class studentPlaceDetailViewController: UIViewController, UIScrollViewDelegate {
  * Set up table view for list of comments for the place
  */
 extension studentPlaceDetailViewController: UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+    
    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.comments.count;
    }

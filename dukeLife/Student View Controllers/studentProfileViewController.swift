@@ -15,6 +15,7 @@ class studentProfileViewController: UIViewController {
 
     // Replace with currentUserId when user log in is set up
     var currentUserId = "test"
+    var currentUsername = "acm103"
     
     // List of places the user likes
     var placesList = [Place]()
@@ -169,6 +170,8 @@ extension studentProfileViewController: UITableViewDataSource, UITableViewDelega
         destVC.likeCountText = "\(place.likeCount)"
         destVC.urlText = place.url
         destVC.phoneNumberText = place.phoneNum
+        destVC.currentUsername = self.currentUsername
+        destVC.currentUserId = self.currentUserId
         
         // Information to write likes back to list when users like
         // a row

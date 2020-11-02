@@ -24,6 +24,10 @@ class studentSignUpViewController: UIViewController, UIScrollViewDelegate, UITex
     override func viewDidLoad() {
         super.viewDidLoad()
         self.Confirm_Password_Stud.delegate = self
+        self.Password_stud.delegate = self
+        self.netID.delegate = self
+        self.Duke_Email.delegate = self
+
         NotificationCenter.default.addObserver(self,selector: #selector(self.keyboardDidShow(notification:)),
             name: UIResponder.keyboardDidShowNotification, object: nil)
             NotificationCenter.default.addObserver(self,selector: #selector(self.keyboardDidHide(notification:)),
