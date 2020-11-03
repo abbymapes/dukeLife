@@ -54,9 +54,13 @@ class studentPlaceDetailViewController: UIViewController, UIScrollViewDelegate {
     var displayPicture: UIImage = UIImage(named: "Default")!
     var isLiked = false;
     
+    //@IBAction func imagePageButton(_ sender: Any) {
+        //self.performSegue(withIdentifier: "images", sender: nil)
+    //}
     @IBAction func imagePageButton(_ sender: Any) {
         self.performSegue(withIdentifier: "images", sender: nil)
     }
+    
     
     
     // Implement like button to add like to database and change appearance when places are liked or unliked
