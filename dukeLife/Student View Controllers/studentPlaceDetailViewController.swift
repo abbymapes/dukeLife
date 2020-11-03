@@ -352,6 +352,8 @@ extension studentPlaceDetailViewController: UITableViewDataSource, UITableViewDe
         if segue.identifier == "images" {
             let destVC = segue.destination as! studentImageCollectionViewController
             destVC.placeId = docId
+            destVC.currentUserId = currentUserId
+            
             
         // Segue to user page from comments
         } else {
@@ -369,7 +371,6 @@ extension studentPlaceDetailViewController: UITableViewDataSource, UITableViewDe
     }
 
     func saveComment(input: String) {
-        print(input)
         let db = Firestore.firestore()
 
         // Get time

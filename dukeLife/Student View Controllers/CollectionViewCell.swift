@@ -10,7 +10,7 @@ import Firebase
 
 class CollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var iamge: UIImageView!
+    @IBOutlet weak var image: UIImageView!
     
 }
 
