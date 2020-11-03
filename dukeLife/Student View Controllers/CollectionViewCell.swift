@@ -11,4 +11,7 @@ import Firebase
 class CollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var iamge: UIImageView!
+    
 }
+
+
