@@ -22,6 +22,7 @@
 		192A7D7C2551D0D90083309D /* DukeLifeLogo(180X180).png in Resources */ = {isa = PBXBuildFile; fileRef = 192A7D6E2551D0D90083309D /* DukeLifeLogo(180X180).png */; };
 		192A7D7D2551D0D90083309D /* DukeLifeLogo.psd in Resources */ = {isa = PBXBuildFile; fileRef = 192A7D6F2551D0D90083309D /* DukeLifeLogo.psd */; };
 		192A7D912551D1070083309D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 192A7D902551D1070083309D /* GoogleService-Info.plist */; };
+		192A7D99255238BB0083309D /* guestImageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192A7D98255238BB0083309D /* guestImageCollectionViewController.swift */; };
 		1935C3DF25433D09003A8EA4 /* studentLogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1935C3DE25433D09003A8EA4 /* studentLogInViewController.swift */; };
 		1935C3E425433D17003A8EA4 /* guestLogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1935C3E325433D17003A8EA4 /* guestLogInViewController.swift */; };
 		1935C3E925433D24003A8EA4 /* studentSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1935C3E825433D24003A8EA4 /* studentSignUpViewController.swift */; };
@@ -88,6 +89,7 @@
 		192A7D6E2551D0D90083309D /* DukeLifeLogo(180X180).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DukeLifeLogo(180X180).png"; path = "../../Final Project/DukeLifeLogo(180X180).png"; sourceTree = "<group>"; };
 		192A7D6F2551D0D90083309D /* DukeLifeLogo.psd */ = {isa = PBXFileReference; lastKnownFileType = file; name = DukeLifeLogo.psd; path = "../../Final Project/DukeLifeLogo.psd"; sourceTree = "<group>"; };
 		192A7D902551D1070083309D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../var/folders/s5/f5pphkfd4_10788sdj2qynr40000gn/T/com.apple.iChat/Messages/Transfers/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		192A7D98255238BB0083309D /* guestImageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = guestImageCollectionViewController.swift; sourceTree = "<group>"; };
 		1935C3DE25433D09003A8EA4 /* studentLogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studentLogInViewController.swift; sourceTree = "<group>"; };
 		1935C3E325433D17003A8EA4 /* guestLogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = guestLogInViewController.swift; sourceTree = "<group>"; };
 		1935C3E825433D24003A8EA4 /* studentSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studentSignUpViewController.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 			children = (
 				196E153C254732A8009EA3AB /* guestProfileViewController.swift */,
 				196E1541254732B5009EA3AB /* guestPlaceDetailViewController.swift */,
+				192A7D98255238BB0083309D /* guestImageCollectionViewController.swift */,
 				196E1546254732CF009EA3AB /* guestMapViewController.swift */,
 			);
 			path = "Guest View Controllers";
@@ -559,6 +562,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1935C3DF25433D09003A8EA4 /* studentLogInViewController.swift in Sources */,
+				192A7D99255238BB0083309D /* guestImageCollectionViewController.swift in Sources */,
 				19A868FA25363EA000F92B03 /* ViewController.swift in Sources */,
 				196E1547254732CF009EA3AB /* guestMapViewController.swift in Sources */,
 				196E1542254732B5009EA3AB /* guestPlaceDetailViewController.swift in Sources */,

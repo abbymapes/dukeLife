@@ -19,6 +19,7 @@ class Place {
     var coords: Coordinates
     var docId: String
     var likeCount: NSNumber
+    var saved: Bool
     
     //MARK: Initializer
     init?(id: String, name: String, displayImg: String, url: String, phoneNum: String, address: Address, coords: Coordinates) {
@@ -35,6 +36,7 @@ class Place {
         self.coords = coords
         self.docId = ""
         self.likeCount = 0
+        self.saved = false
     }
     
     //MARK: Initializer
@@ -52,5 +54,10 @@ class Place {
         self.coords = coords
         self.docId = docId
         self.likeCount = likeCount
+        self.saved = false
+    }
+    
+    func setSavedStatus(_ isSaved: Bool) {
+        self.saved = isSaved
     }
 }

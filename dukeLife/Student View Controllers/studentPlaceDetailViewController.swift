@@ -27,9 +27,6 @@ class studentPlaceDetailViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
-    @IBAction func hideKeyboard(_ sender: AnyObject) {
-      commentInput.endEditing(true)
-    }
     @IBAction func returnKey(_ sender: Any) {
         if (!commentInput.text!.isEmpty) {
             saveComment(input: commentInput.text!)
