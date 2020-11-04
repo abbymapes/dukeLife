@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import MapKit
 
 class studentMapViewController: UIViewController {
     // placeList contains all places that match selected type
@@ -49,14 +50,23 @@ class studentMapViewController: UIViewController {
         getPrevPage()
     }
     
+    // Map
+    let locationManager = CLLocationManager()
+    @IBOutlet weak var mapView: MKMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         resultsTableView.delegate = self
         resultsTableView.dataSource = self
+
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
         if (selectedType.isEmpty) {
             selectedType = "food"
         }
         loadPlaces()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -139,6 +149,7 @@ class studentMapViewController: UIViewController {
                         self.setPageButtonsDisplay()
                         
                         print("Loading initial data from start index: \(self.currentStartIndex) to end index: \(self.currentEndIndex) for \(self.selectedType) category")
+                        self.dropPins()
                         DispatchQueue.main.async {[weak self] in
                             self?.resultsTableView.reloadData()
                         }
@@ -147,6 +158,11 @@ class studentMapViewController: UIViewController {
                     }
                 }
         }
+    }
+    
+    // For each place in self.placesDisplayed, get place.coords.latitude and place.coords.longitude and drop the pin for each one
+    func dropPins()  {
+        
     }
     
     /*
@@ -170,6 +186,7 @@ class studentMapViewController: UIViewController {
         // Reset page buttons
         setPageButtonsDisplay()
         print("Reloading next page of data from index \(self.currentStartIndex) to index \(self.currentEndIndex)")
+        dropPins()
         DispatchQueue.main.async {[weak self] in
             self?.resultsTableView.reloadData()
         }
@@ -190,6 +207,7 @@ class studentMapViewController: UIViewController {
         self.currentEndIndex = self.currentStartIndex + 9
         setPageButtonsDisplay()
         print("Reloading previous page of data from index \(self.currentStartIndex) to index \(self.currentEndIndex)")
+        dropPins()
         DispatchQueue.main.async {[weak self] in
             self?.resultsTableView.reloadData()
         }
@@ -216,7 +234,7 @@ class studentMapViewController: UIViewController {
 /*
  * Set up table view for list of places
  */
-extension studentMapViewController: UITableViewDataSource, UITableViewDelegate, PlaceDetailViewControllerDelegate {
+extension studentMapViewController: UITableViewDataSource, UITableViewDelegate, PlaceDetailViewControllerDelegate, CLLocationManagerDelegate {
     
    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.placesDisplayed.count;
@@ -255,7 +273,6 @@ extension studentMapViewController: UITableViewDataSource, UITableViewDelegate, 
     
     // MARK: - Navigation to Place Information
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         // Get the new view controller using segue.destination.
         let destVC = segue.destination as! studentPlaceDetailViewController
         let myRow = resultsTableView!.indexPathForSelectedRow

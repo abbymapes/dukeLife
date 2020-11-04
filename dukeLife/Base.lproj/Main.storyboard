@@ -808,6 +808,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" selectedImage="map" id="IDU-jF-7cx"/>
                     <connections>
+                        <outlet property="mapView" destination="qAL-qT-lb7" id="Fz3-ca-boF"/>
                         <outlet property="nextButton" destination="hpx-xo-lDn" id="e9l-FL-Tpc"/>
                         <outlet property="prevButton" destination="PpR-sS-5yP" id="e2B-Xr-weq"/>
                         <outlet property="resultsTableView" destination="pzn-bc-pBo" id="Ka5-5o-Fio"/>
