@@ -11,22 +11,25 @@ import UIKit
 import Firebase
 
 class launchViewController: UIViewController {
-    
-    struct business {
+    struct coords: Codable {
+        var latitude: Decimal?
+        var longitude: Decimal?
+    }
+    struct business: Codable {
         var id:String?
         var name: String?
         var url: String?
-        var coordinates: Coordinates?
+        var coordinates: coords?
         var image_url:String?
         var location: Address?
         var display_phone: String?
     }
     
-    struct apiResponse {
+    struct apiResponse: Codable {
         var businesses:[business]
     }
     
-    struct ids {
+    struct ids: Codable {
         var yelpId: String
         var docId: String
     }
@@ -52,12 +55,11 @@ class launchViewController: UIViewController {
         let latitude = 36.0014
         let longitude = -78.9382
         let radius = 16093
-        let category = "collegeuniv"
-        let offset = 0
+        let searchString = "donuts"
         
         let apikey = "Q2DSCs_0MgIdnj4RLvlehFC7McfEGtAp8JZi8AYffmqMPCcS7vlpLRNoGixr_bGRKRG3XsOmjb1rlrX_0RpzIHdZG5Mdmom3GgCWyDZn8CJXHrIeQP9S3Q2AbAeTX3Yx"
         
-        let baseURL = "https://api.yelp.com/v3/businesses/search?latitude=\(latitude)&longitude=\(longitude)&radius=\(radius)&categories=\(category)&offset=\(offset)"
+        let baseURL = "https://api.yelp.com/v3/businesses/search?term=\(searchString)&latitude=\(latitude)&longitude=\(longitude)&radius=\(radius)"
         
         let url = URL(string: baseURL)
         
@@ -92,7 +94,9 @@ class launchViewController: UIViewController {
                 self.placeList.removeAll()
                 var i = 0;
                 for place in allPlaces {
-                    let placeToAdd = Place.init(id: place.id!, name: place.name!, displayImg: place.image_url!, url: place.url!, phoneNum: place.display_phone!, address: place.location!, coords: place.coordinates!)!
+                    print(allPlaces)
+                    let c = Coordinates.init(latitude: place.coordinates?.latitude as! NSNumber, longitude: place.coordinates?.longitude as! NSNumber)!
+                    let placeToAdd = Place.init(id: place.id!, name: place.name!, displayImg: place.image_url!, url: place.url!, phoneNum: place.display_phone!, address: place.location!, coords: c)!
                     self.placeList.append(placeToAdd);
                     
                     // Add a new document with a generated ID
@@ -154,7 +158,6 @@ class launchViewController: UIViewController {
                                 }
                         }
                     }*/
-                    
                     print(place.name!)
                     print(i);
                     i += 1
@@ -163,8 +166,7 @@ class launchViewController: UIViewController {
                 print("JSON Decode error")
             }
         }
-        dataTask.resume()
-        */
+        dataTask.resume()*/
 
     // Adding Images from YELP API to Databse
     // DO NOT UNCOMMENT BELOW (ALREADY ADDED IMAGES TO DATABASE)

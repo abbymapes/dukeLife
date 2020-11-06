@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/abbymapes/Desktop/CS290/dukeLife/dukeLife/Student View Controllers/addPlaceTableViewCell.swift">
+   </FileRef>
+   <FileRef
       location = "group:dukeLife.xcodeproj">
    </FileRef>
    <FileRef

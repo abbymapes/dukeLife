@@ -39,7 +39,6 @@ class Place {
         self.saved = false
     }
     
-    //MARK: Initializer
     init?(id: String, name: String, displayImg: String, url: String, phoneNum: String, address: Address, coords: Coordinates, docId: String, likeCount: NSNumber) {
         if (name.isEmpty) {
             return nil;
