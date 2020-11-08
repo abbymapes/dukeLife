@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import MapKit
+import Contacts
 
 class studentMapViewController: UIViewController {
     // placeList contains all places that match selected type
@@ -67,7 +68,20 @@ class studentMapViewController: UIViewController {
         }
         loadPlaces()
         
+        let dukeCenter = CLLocation(latitude: 36.0014, longitude: -78.9382)
+        let region = MKCoordinateRegion(
+          center: dukeCenter.coordinate,
+          latitudinalMeters: 5000,
+          longitudinalMeters: 6000)
+        
+        let zoomRange = MKMapView.CameraZoomRange(maxCenterCoordinateDistance: 30000)
+        mapView.setCameraZoomRange(zoomRange, animated: true)
+        
+        mapView.delegate = self
+        
     }
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -162,7 +176,19 @@ class studentMapViewController: UIViewController {
     
     // For each place in self.placesDisplayed, get place.coords.latitude and place.coords.longitude and drop the pin for each one
     func dropPins()  {
-        
+        self.mapView.removeAnnotations(mapView.annotations)
+        var locations = [MKPointAnnotation]()
+        for place in self.placesDisplayed {
+            let dropPin = MKPointAnnotation()
+            dropPin.title = place.name
+            let latitude = place.coords.latitude as! Double
+            let longitude = place.coords.longitude as! Double
+            dropPin.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            self.mapView.addAnnotation(dropPin)
+            self.mapView.selectAnnotation( dropPin, animated: true)
+            locations.append(dropPin)
+            self.mapView.showAnnotations(locations, animated: true)
+        }
     }
     
     /*
@@ -357,4 +383,44 @@ extension studentMapViewController: UITableViewDataSource, UITableViewDelegate, 
             self?.resultsTableView.reloadData()
         }
     }
+    
+    
+}
+
+private extension MKMapView {
+  func centerToLocation(_ location: CLLocation, regionRadius: CLLocationDistance = 1000) {
+    let coordinateRegion = MKCoordinateRegion(
+      center: location.coordinate,
+      latitudinalMeters: regionRadius,
+      longitudinalMeters: regionRadius)
+    setRegion(coordinateRegion, animated: true)
+  }
+}
+
+extension studentMapViewController: MKMapViewDelegate {
+  // 1
+  func mapView(
+    _ mapView: MKMapView,
+    viewFor annotation: MKAnnotation
+  ) -> MKAnnotationView? {
+    // 2
+    // 3
+    let identifier = "places"
+    var view: MKMarkerAnnotationView
+    // 4
+    if let dequeuedView = mapView.dequeueReusableAnnotationView(
+      withIdentifier: identifier) as? MKMarkerAnnotationView {
+      dequeuedView.annotation = annotation
+      view = dequeuedView
+    } else {
+      // 5
+      view = MKMarkerAnnotationView(
+        annotation: annotation,
+        reuseIdentifier: identifier)
+      view.canShowCallout = true
+      view.calloutOffset = CGPoint(x: -5, y: 5)
+      view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+    }
+    return view
+  }
 }

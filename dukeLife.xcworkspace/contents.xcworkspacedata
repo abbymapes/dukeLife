@@ -2,7 +2,10 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/abbymapes/Desktop/CS290/dukeLife/dukeLife/Student View Controllers/addPlaceTableViewCell.swift">
+      location = "group:/Users/jiyunhyo1/Desktop/cps310/CS290FINAL/connecticut/dukeLife/Student View Controllers/addPlaceTableViewCell.swift">
+   </FileRef>
+   <FileRef
+      location = "group:../GoogleService-Info.plist">
    </FileRef>
    <FileRef
       location = "group:dukeLife.xcodeproj">
