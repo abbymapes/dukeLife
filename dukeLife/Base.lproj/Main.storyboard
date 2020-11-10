@@ -862,7 +862,7 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="imagePageButton:" destination="ZOb-Xv-TrV" eventType="touchUpInside" id="rOp-L6-VZc"/>
-                                                    <segue destination="fB0-4A-3eK" kind="show" id="8GZ-6b-DcE"/>
+                                                    <segue destination="fB0-4A-3eK" kind="show" identifier="images" id="8GZ-6b-DcE"/>
                                                 </connections>
                                             </button>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="izx-3B-9Cc">
@@ -1091,7 +1091,7 @@
                     <navigationItem key="navigationItem" id="qD3-L3-VTT"/>
                     <connections>
                         <outlet property="collectionView" destination="ktf-A1-TbW" id="VCV-rR-j40"/>
-                        <segue destination="Jz9-mQ-KED" kind="show" id="GPk-7g-Src"/>
+                        <segue destination="Jz9-mQ-KED" kind="show" identifier="singleImageSegue" id="GPk-7g-Src"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i1A-Bk-oOa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1513,7 +1513,7 @@
                                                 <connections>
                                                     <action selector="imagePageButton:" destination="0N0-lg-6GR" eventType="touchUpInside" id="1gE-g8-7yh"/>
                                                     <action selector="imagePageButton:" destination="FE8-cb-UEF" eventType="touchUpInside" id="WCm-WG-0ex"/>
-                                                    <segue destination="jOy-3n-Bg1" kind="show" id="lDW-2Y-2oC"/>
+                                                    <segue destination="jOy-3n-Bg1" kind="show" identifier="images" id="lDW-2Y-2oC"/>
                                                 </connections>
                                             </button>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SzO-NR-a0e">
@@ -1699,7 +1699,7 @@
                     </collectionView>
                     <navigationItem key="navigationItem" id="sh5-lz-jd8"/>
                     <connections>
-                        <segue destination="Jz9-mQ-KED" kind="show" id="W76-zX-n7M"/>
+                        <segue destination="Jz9-mQ-KED" kind="show" identifier="singleImageSegue" id="W76-zX-n7M"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GqH-y9-ohZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1709,31 +1709,34 @@
         <!--Scroll View Controller-->
         <scene sceneID="ECC-HU-eyO">
             <objects>
-                <viewController id="Jz9-mQ-KED" customClass="ScrollViewController" sceneMemberID="viewController">
+                <viewController id="Jz9-mQ-KED" customClass="ScrollViewController" customModule="dukeLife" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UjO-In-Av0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a3O-Y9-FNv">
-                                <rect key="frame" x="0.0" y="56" width="414" height="752"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SFd-2X-FRl">
+                                <rect key="frame" x="0.0" y="211" width="414" height="308"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="euM-RX-H03">
-                                <rect key="frame" x="0.0" y="56" width="414" height="752"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="975-ap-HJn"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="Qhc-8R-g8e"/>
+                            </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Mt6-ik-qzK">
+                                <rect key="frame" x="146" y="538" width="123" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                            </pageControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="h5m-BT-UVx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="KKd-uM-wK5"/>
                     <connections>
-                        <outlet property="image" destination="euM-RX-H03" id="cdg-Wt-2GR"/>
+                        <outlet property="pageControl" destination="Mt6-ik-qzK" id="tte-Er-KUi"/>
+                        <outlet property="scrollView" destination="SFd-2X-FRl" id="3B4-wV-R0N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NwV-JH-aDI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8803" y="-1854"/>
+            <point key="canvasLocation" x="8802.898550724638" y="-1854.2410714285713"/>
         </scene>
         <!--Add Detail View Controller-->
         <scene sceneID="E8f-dS-Uep">

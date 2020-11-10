@@ -22,7 +22,6 @@ class studentImageCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getImages()
-        //fix()
         // Do any additional setup after loading the view.
     }
 
@@ -97,11 +96,18 @@ class studentImageCollectionViewController: UICollectionViewController {
     
 
     // MARK: UICollectionViewDelegate
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            self.performSegue(withIdentifier: "singleImageSegue", sender: indexPath)
 
+    }
     
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "singleImageSegue"{
+            let selectedIndexPath = sender as? NSIndexPath
+            let vc = segue.destination as! ScrollViewController
+            vc.imgs = images
+            vc.index = selectedIndexPath!.row
+        }
     }
     
 
@@ -237,17 +243,6 @@ extension studentImageCollectionViewController: UIImagePickerControllerDelegate,
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-         if let cell = sender as? UICollectionViewCell,
-            let indexPath = self.collectionView.indexPath(for: cell) {
-
-             let vc = segue.destination as! ScrollViewController //Cast with your DestinationController
-             //Now simply set the title property of vc
-             vc.img = images[indexPath.row]
-         }
     }
     
     /*
