@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+
 class studentSignUpViewController: UIViewController, UIScrollViewDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!

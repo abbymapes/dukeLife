@@ -7,6 +7,9 @@
 
 import UIKit
 import Firebase
+import MapKit
+import Contacts
+
 
 class guestMapViewController: UIViewController {
     // placeList contains all places that match selected type
@@ -26,6 +29,10 @@ class guestMapViewController: UIViewController {
         selectedType = types[sender.titleForSegment(at: sender.selectedSegmentIndex)!]!
         loadPlaces()
     }
+    
+    // Map
+    let locationManager = CLLocationManager()
+    @IBOutlet weak var mapView: MKMapView!
     
     // Keeps track of current places displayed on page
     var currentStartIndex = 0
@@ -52,10 +59,15 @@ class guestMapViewController: UIViewController {
         super.viewDidLoad()
         resultsTableView.delegate = self
         resultsTableView.dataSource = self
+        
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
         if (selectedType.isEmpty) {
             selectedType = "food"
         }
         loadPlaces()
+        mapView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -138,6 +150,7 @@ class guestMapViewController: UIViewController {
                         self.setPageButtonsDisplay()
                         
                         print("Loading initial data from start index: \(self.currentStartIndex) to end index: \(self.currentEndIndex) for \(self.selectedType) category")
+                        self.dropPins()
                         DispatchQueue.main.async {[weak self] in
                             self?.resultsTableView.reloadData()
                             let indexPath = NSIndexPath(row: 0, section: 0)
@@ -150,6 +163,22 @@ class guestMapViewController: UIViewController {
         }
     }
     
+    // For each place in self.placesDisplayed, get place.coords.latitude and place.coords.longitude and drop the pin for each one
+    func dropPins()  {
+        self.mapView.removeAnnotations(mapView.annotations)
+        var locations = [MKPointAnnotation]()
+        for place in self.placesDisplayed {
+            let dropPin = MKPointAnnotation()
+            dropPin.title = place.name
+            let latitude = place.coords.latitude as! Double
+            let longitude = place.coords.longitude as! Double
+            dropPin.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            self.mapView.addAnnotation(dropPin)
+            locations.append(dropPin)
+            self.mapView.showAnnotations(locations, animated: true)
+        }
+    }
+
     /*
      * Loads next 10 pages to be displayed from placesList
      */
@@ -171,6 +200,7 @@ class guestMapViewController: UIViewController {
         // Reset page buttons
         setPageButtonsDisplay()
         print("Reloading next page of data from index \(self.currentStartIndex) to index \(self.currentEndIndex)")
+        dropPins()
         DispatchQueue.main.async {[weak self] in
             self?.resultsTableView.reloadData()
             let indexPath = NSIndexPath(row: 0, section: 0)
@@ -192,6 +222,7 @@ class guestMapViewController: UIViewController {
         }
         self.currentEndIndex = self.currentStartIndex + 9
         setPageButtonsDisplay()
+        dropPins()
         print("Reloading previous page of data from index \(self.currentStartIndex) to index \(self.currentEndIndex)")
         DispatchQueue.main.async {[weak self] in
             self?.resultsTableView.reloadData()
@@ -221,7 +252,7 @@ class guestMapViewController: UIViewController {
 /*
  * Set up table view for list of places
  */
-extension guestMapViewController: UITableViewDataSource, UITableViewDelegate, GuestPlaceDetailViewControllerDelegate {
+extension guestMapViewController: UITableViewDataSource, UITableViewDelegate, GuestPlaceDetailViewControllerDelegate, CLLocationManagerDelegate {
     
    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.placesDisplayed.count;
@@ -337,4 +368,60 @@ extension guestMapViewController: UITableViewDataSource, UITableViewDelegate, Gu
             self?.resultsTableView.scrollToRow(at: indexPath as IndexPath, at: .top, animated: false)
         }
     }
+}
+
+private extension MKMapView {
+  func centerToLocation(_ location: CLLocation, regionRadius: CLLocationDistance = 1000) {
+    let coordinateRegion = MKCoordinateRegion(
+      center: location.coordinate,
+      latitudinalMeters: regionRadius,
+      longitudinalMeters: regionRadius)
+    setRegion(coordinateRegion, animated: true)
+  }
+}
+
+
+extension guestMapViewController: MKMapViewDelegate {
+  // 1
+  func mapView(
+    _ mapView: MKMapView,
+    viewFor annotation: MKAnnotation
+  ) -> MKAnnotationView? {
+    // 2
+    // 3
+    let identifier = "places"
+    var view: MKMarkerAnnotationView
+    // 4
+    if let dequeuedView = mapView.dequeueReusableAnnotationView(
+      withIdentifier: identifier) as? MKMarkerAnnotationView {
+      dequeuedView.annotation = annotation
+      view = dequeuedView
+    } else {
+      // 5
+      view = MKMarkerAnnotationView(
+        annotation: annotation,
+        reuseIdentifier: identifier)
+      view.canShowCallout = true
+      view.calloutOffset = CGPoint(x: -5, y: 5)
+      view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+    }
+    return view
+  }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView)
+  {
+    let selectedLat = (view.annotation?.coordinate.latitude)! as NSNumber
+    let selectedLong = (view.annotation?.coordinate.longitude)! as NSNumber
+    var ind = 0
+    for place in self.placesDisplayed {
+        if (place.coords.latitude == selectedLat && place.coords.longitude == selectedLong) {
+            if (self.resultsTableView.numberOfSections != 0 && self.resultsTableView.numberOfRows(inSection: 0) != 0) {
+                let index = NSIndexPath(row: ind, section: 0)
+                self.resultsTableView.selectRow(at: index as IndexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
+                return
+            }
+        }
+        ind = ind + 1
+    }
+  }
 }

@@ -681,6 +681,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" selectedImage="map" id="M3a-dE-PMK"/>
                     <connections>
+                        <outlet property="mapView" destination="U6T-lJ-kEv" id="c4H-fS-i47"/>
                         <outlet property="nextButton" destination="8eu-AS-ptz" id="RxP-zd-LDc"/>
                         <outlet property="prevButton" destination="aUs-DH-ESI" id="jmo-L7-XYi"/>
                         <outlet property="resultsTableView" destination="Ejq-Cc-kfw" id="wzj-vt-B0B"/>
@@ -758,7 +759,7 @@
                                             <outlet property="likeButton" destination="KhI-DO-a6w" id="g3X-Uz-JJq"/>
                                             <outlet property="likeCount" destination="xiA-Tr-vGe" id="Pl7-TG-Gst"/>
                                             <outlet property="name" destination="f5Q-0q-1qu" id="Muy-zn-lWf"/>
-                                            <segue destination="ZOb-Xv-TrV" kind="showDetail" id="IoX-zN-uP6"/>
+                                            <segue destination="ZOb-Xv-TrV" kind="showDetail" identifier="" id="IoX-zN-uP6"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -816,7 +817,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GiH-aF-sI2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5624.6376811594209" y="231.69642857142856"/>
+            <point key="canvasLocation" x="5648" y="208"/>
         </scene>
         <!--Student Place Detail View Controller-->
         <scene sceneID="kf4-fV-v6i">
@@ -1784,11 +1785,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="79s-OR-zwl"/>
+        <segue reference="jeF-dq-czp"/>
         <segue reference="yHN-yd-Pa1"/>
         <segue reference="FUw-Ed-bFr"/>
         <segue reference="2Rl-nu-3Ww"/>
-        <segue reference="58P-YG-oC3"/>
+        <segue reference="leB-58-hpu"/>
         <segue reference="Mwl-YY-y5E"/>
     </inferredMetricsTieBreakers>
     <resources>
