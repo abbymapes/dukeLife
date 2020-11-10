@@ -44,8 +44,72 @@ class launchViewController: UIViewController {
     var idList = [ids]()
     var photosFound = [String]()
     
+    let netIds = ["bcw27", "msg124", "lsc39", "csw21", "jka32", "dar032", "dan024", "jdb12", "fab42", "cja24", "kda024", "sdf5", "sfn1", "dab24", "jb24", "da03", "erw1", "fda2", "dg2", "kap13", "amb23", "alp21", "loz02", "clo00", "adb", "avm", "mna", "bal", "llv", "naa24", "dja12", "ksa00", "ppa2", "mca12", "aba24", "zfa12", "jda99", "cck11", "jba12", "clm13", "lcm1", "ptk00", "jtm12", "cjm44", "mjm217", "ntw11", "brw12", "lqw31", "wkw12", "mdw23", "cbw29", "rmw22", "dww2", "jsb", "dab12", "dbn02", "da21", "bp02", "ljf23", "gbp12", "dak21", "fa02"]
+    
+    let comments = [
+    "I love their ramen.",
+    "Service is great!",
+    "I always go there with my friends and get their bao buns. What a great establishment!",
+    "This is the best ramen in Durham hands down.",
+    "I never liked ramen until I tried it here.",
+    "They also have great udon noodle soup.",
+    "Don’t sleep on the fried rice.",
+    "Great for big parties and special occasions",
+    "My favorite late night ramen spot.",
+    "One of my favorite places in Downtown Durham… almost rivals M Sushi!",
+    "WU has a run for their money with this ramen.",
+    "I love going to Eno with a group of friends.",
+    "It’s so easy to go to Eno. Only around 15 minutes from campus. Bring a bathing suit and some lunch.",
+    "There’s a cliff that is super fun to jump off of. Great activity for O Week when its hot.",
+    "Highly recommend. Nice way to get out of Durham.",
+    "The water gets cold in the winter so I recommend going in August / September.",
+    "Great spot. Grade A fun"
+    ]
+
+    let places = [
+    "09HrW53ZsFtOTP3VRLPw",
+    "09HrW53ZsFtOTP3VRLPw",
+    "09HrW53ZsFtOTP3VRLPw",
+    "09HrW53ZsFtOTP3VRLPw",
+    "09HrW53ZsFtOTP3VRLPw",
+    "09HrW53ZsFtOTP3VRLPw",
+    "09HrW53ZsFtOTP3VRLPw",
+    "09HrW53ZsFtOTP3VRLPw",
+    "09HrW53ZsFtOTP3VRLPw",
+    "09HrW53ZsFtOTP3VRLPw",
+    "09HrW53ZsFtOTP3VRLPw",
+    "PP26rDvtoxWMRDJKct28",
+    "PP26rDvtoxWMRDJKct28",
+    "PP26rDvtoxWMRDJKct28",
+    "PP26rDvtoxWMRDJKct28",
+    "PP26rDvtoxWMRDJKct28",
+    "PP26rDvtoxWMRDJKct28"
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        /*
+        var i = 0
+        let db = Firestore.firestore()
+        for id in netIds {
+            var ref: DocumentReference? = nil
+            ref = db.collection("students").addDocument(data:[
+                "netId": id,
+                "email": "demo@test.com"
+            ]) { err in
+                    if let err = err {
+                        print("Error adding document: \(err)")
+                    } else {
+                        print("Document added with ID: \(ref!.documentID)")
+                        if (i < self.places.count) {
+                            let placeId = self.places[i]
+                            let comment = self.comments[i]
+                            self.saveComment(input:comment, netId: id, userId: ref!.documentID, placeId: placeId)
+                            i = i + 1
+                        }
+                    }
+                }
+        }
         
         // DO NOT UNCOMMENT BELOW (DATABASE ALREADY ADDED / INITIALIZED WITH LOCATIONS
         // Set up Database with locations from YelpAPI for each category
@@ -156,7 +220,7 @@ class launchViewController: UIViewController {
                                 } else {
                                     print("Document added with ID: \(ref!.documentID)")
                                 }
-                        }
+                        }*/
                     }*/
                     print(place.name!)
                     print(i);
@@ -289,5 +353,28 @@ class launchViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    func saveComment(input: String, netId: String, userId: String, placeId: String) {
+        let db = Firestore.firestore()
 
+        // Get time
+        let timestamp = NSDate().timeIntervalSince1970
+        let myTimeInterval = TimeInterval(timestamp)
+        let time = NSDate(timeIntervalSince1970: TimeInterval(myTimeInterval))
+            
+        var ref: DocumentReference? = nil
+        ref = db.collection("comments").addDocument(data: [
+            "comment": input,
+            "netId": netId,
+            "placeId": placeId,
+            "time": time,
+            "userId": userId
+        ])
+        { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Comment written with Document ID: \(ref!.documentID)")
+                }
+            }
+        }
 }

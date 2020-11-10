@@ -957,7 +957,7 @@
                                                 <dataDetectorType key="dataDetectorTypes" address="YES"/>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="38" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wui-9y-0MN">
-                                                <rect key="frame" x="45" y="49" width="25" height="24"/>
+                                                <rect key="frame" x="45" y="49" width="361" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <color key="textColor" red="0.0" green="0.32549019610000002" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1540,7 +1540,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="38" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JKS-SM-eG3">
-                                                <rect key="frame" x="48" y="52" width="24.5" height="24"/>
+                                                <rect key="frame" x="48" y="52" width="346" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <color key="textColor" red="0.0" green="0.32549019610000002" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1788,7 +1788,7 @@
         <segue reference="jeF-dq-czp"/>
         <segue reference="yHN-yd-Pa1"/>
         <segue reference="FUw-Ed-bFr"/>
-        <segue reference="2Rl-nu-3Ww"/>
+        <segue reference="Kzm-ZT-PFO"/>
         <segue reference="leB-58-hpu"/>
         <segue reference="Mwl-YY-y5E"/>
     </inferredMetricsTieBreakers>
