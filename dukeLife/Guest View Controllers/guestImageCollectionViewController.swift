@@ -98,13 +98,20 @@ class guestImageCollectionViewController: UICollectionViewController {
         return true
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+         if let cell = sender as? UICollectionViewCell,
+            let indexPath = self.collectionView.indexPath(for: cell) {
+
+             let vc = segue.destination as! ScrollViewController //Cast with your DestinationController
+             //Now simply set the title property of vc
+             vc.img = images[indexPath.row]
+         }
+    }
+    
 
     
     // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
 
     /*
     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item

@@ -22,6 +22,7 @@ class studentImageCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getImages()
+        //fix()
         // Do any additional setup after loading the view.
     }
 
@@ -36,6 +37,7 @@ class studentImageCollectionViewController: UICollectionViewController {
     */
 
     // MARK: UICollectionViewDataSource
+    
     
     func getImages(){
         let db = Firestore.firestore()
@@ -236,5 +238,28 @@ extension studentImageCollectionViewController: UIImagePickerControllerDelegate,
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+         if let cell = sender as? UICollectionViewCell,
+            let indexPath = self.collectionView.indexPath(for: cell) {
+
+             let vc = segue.destination as! ScrollViewController //Cast with your DestinationController
+             //Now simply set the title property of vc
+             vc.img = images[indexPath.row]
+         }
+    }
+    
+    /*
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "ScrollViewController") as? ScrollViewController
+        vc?.img = images[indexPath.row]
+        self.navigationController?.pushViewController(vc!, animated: true)
+        
+    }
+    */
+    
+    
+    
 
 }
