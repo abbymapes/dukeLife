@@ -13,6 +13,8 @@ class commentTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        sizeToFit()
+        layoutIfNeeded()
         // Initialization code
     }
 

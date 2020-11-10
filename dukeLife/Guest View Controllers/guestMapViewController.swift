@@ -23,7 +23,6 @@ class guestMapViewController: UIViewController {
     var selectedType = ""
     var types = ["Food": "food", "Bars":"bars", "Fun": "fun", "Coffee": "coffee"]
     @IBAction func typeSelector(_ sender: UISegmentedControl) {
-        print("\(sender.titleForSegment(at: sender.selectedSegmentIndex)!)")
         selectedType = types[sender.titleForSegment(at: sender.selectedSegmentIndex)!]!
         loadPlaces()
     }
@@ -79,7 +78,7 @@ class guestMapViewController: UIViewController {
         let db = Firestore.firestore()
         
         // Query all places for selected type
-        db.collection("places").whereField("type", isEqualTo: selectedType).getDocuments() { (querySnapshot, err) in
+        db.collection("places").whereField("type", isEqualTo: selectedType).order(by: "likeCount", descending: true).getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
@@ -141,6 +140,8 @@ class guestMapViewController: UIViewController {
                         print("Loading initial data from start index: \(self.currentStartIndex) to end index: \(self.currentEndIndex) for \(self.selectedType) category")
                         DispatchQueue.main.async {[weak self] in
                             self?.resultsTableView.reloadData()
+                            let indexPath = NSIndexPath(row: 0, section: 0)
+                            self?.resultsTableView.scrollToRow(at: indexPath as IndexPath, at: .top, animated: false)
                         }
                     } else {
                         print("No initial results returned from query")
@@ -172,6 +173,8 @@ class guestMapViewController: UIViewController {
         print("Reloading next page of data from index \(self.currentStartIndex) to index \(self.currentEndIndex)")
         DispatchQueue.main.async {[weak self] in
             self?.resultsTableView.reloadData()
+            let indexPath = NSIndexPath(row: 0, section: 0)
+            self?.resultsTableView.scrollToRow(at: indexPath as IndexPath, at: .top, animated: false)
         }
     }
     
@@ -192,6 +195,8 @@ class guestMapViewController: UIViewController {
         print("Reloading previous page of data from index \(self.currentStartIndex) to index \(self.currentEndIndex)")
         DispatchQueue.main.async {[weak self] in
             self?.resultsTableView.reloadData()
+            let indexPath = NSIndexPath(row: 0, section: 0)
+            self?.resultsTableView.scrollToRow(at: indexPath as IndexPath, at: .top, animated: false)
         }
     }
     
@@ -232,7 +237,6 @@ extension guestMapViewController: UITableViewDataSource, UITableViewDelegate, Gu
     
         // Set saved button for user
         var saved = false
-        print(placesDisplayed[indexPath.row].docId)
         let db = Firestore.firestore()
         db.collection("savedPlaces").whereField("placeId", isEqualTo: placesDisplayed[indexPath.row].docId)
             .whereField("userId", isEqualTo: self.currentUserId).getDocuments(){ (querySnapshot, err) in
@@ -329,6 +333,8 @@ extension guestMapViewController: UITableViewDataSource, UITableViewDelegate, Gu
         print("Reloading like count of table view after user has saved a place")
         DispatchQueue.main.async {[weak self] in
             self?.resultsTableView.reloadData()
+            let indexPath = NSIndexPath(row: 0, section: 0)
+            self?.resultsTableView.scrollToRow(at: indexPath as IndexPath, at: .top, animated: false)
         }
     }
 }

@@ -64,10 +64,12 @@ class addDetailViewController: UIViewController, CLLocationManagerDelegate {
         dropPin.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         dropPin.title = place!.name
         self.mapView.addAnnotation(dropPin)
-            
-        let initialLocation = CLLocation(latitude: latitude, longitude: longitude)
-        self.mapView.setCenter(CLLocationCoordinate2D(latitude: latitude, longitude: longitude), animated: true)
-        // Do any additional setup after loading the view.
+        var mapRegion = MKCoordinateRegion();
+        mapRegion.center.latitude = latitude;
+        mapRegion.center.longitude = longitude;
+        mapRegion.span.latitudeDelta = 0.01;
+        mapRegion.span.longitudeDelta = 0.01;
+        self.mapView.region = mapRegion;
     }
     
     /*

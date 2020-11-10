@@ -102,6 +102,8 @@ class guestPlaceDetailViewController: UIViewController, UIScrollViewDelegate {
         self.url.text = urlText
         self.displayImage.image = displayPicture
         loadComments();
+        self.commentTableView.rowHeight = UITableView.automaticDimension
+        self.commentTableView.estimatedRowHeight = UITableView.automaticDimension
     }
     
 
@@ -139,6 +141,8 @@ class guestPlaceDetailViewController: UIViewController, UIScrollViewDelegate {
                         print("Reloading comment table view to show comments")
                         DispatchQueue.main.async {[weak self] in
                             self?.commentTableView.reloadData()
+                            let indexPath = NSIndexPath(item: (self?.comments.count)! - 1, section: 0)
+                            self?.commentTableView.scrollToRow(at: indexPath as IndexPath, at: UITableView.ScrollPosition.bottom, animated: false)
                         }
                     } else {
                         print("No comments in database, so not reloading comment table view")
@@ -267,5 +271,11 @@ extension guestPlaceDetailViewController: UITableViewDataSource, UITableViewDele
             destVC.name = selectedNetId
             destVC.userId = selectedUser
         }
+    }
+    
+    // UITableViewAutomaticDimension calculates height of label contents/text
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        // Swift 4.2 onwards
+        return UITableView.automaticDimension
     }
 }

@@ -24,7 +24,6 @@ class studentMapViewController: UIViewController {
     var selectedType = ""
     var types = ["Food": "food", "Bars":"bars", "Fun": "fun", "Coffee": "coffee"]
     @IBAction func typeSelector(_ sender: UISegmentedControl) {
-        print("\(sender.titleForSegment(at: sender.selectedSegmentIndex)!)")
         selectedType = types[sender.titleForSegment(at: sender.selectedSegmentIndex)!]!
         loadPlaces()
     }
@@ -89,7 +88,7 @@ class studentMapViewController: UIViewController {
         let db = Firestore.firestore()
         
         // Query all places for selected type
-        db.collection("places").whereField("type", isEqualTo: selectedType).getDocuments() { (querySnapshot, err) in
+        db.collection("places").whereField("type", isEqualTo: selectedType).order(by: "likeCount", descending: true).getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
@@ -152,6 +151,8 @@ class studentMapViewController: UIViewController {
                         self.dropPins()
                         DispatchQueue.main.async {[weak self] in
                             self?.resultsTableView.reloadData()
+                            let indexPath = NSIndexPath(row: 0, section: 0)
+                            self?.resultsTableView.scrollToRow(at: indexPath as IndexPath, at: .top, animated: false)
                         }
                     } else {
                         print("No initial results returned from query")
@@ -162,8 +163,8 @@ class studentMapViewController: UIViewController {
     
     // For each place in self.placesDisplayed, get place.coords.latitude and place.coords.longitude and drop the pin for each one
     func dropPins()  {
-        
     }
+
     
     /*
      * Loads next 10 pages to be displayed from placesList
@@ -189,6 +190,8 @@ class studentMapViewController: UIViewController {
         dropPins()
         DispatchQueue.main.async {[weak self] in
             self?.resultsTableView.reloadData()
+            let indexPath = NSIndexPath(row: 0, section: 0)
+            self?.resultsTableView.scrollToRow(at: indexPath as IndexPath, at: .top, animated: false)
         }
     }
     
@@ -210,6 +213,8 @@ class studentMapViewController: UIViewController {
         dropPins()
         DispatchQueue.main.async {[weak self] in
             self?.resultsTableView.reloadData()
+            let indexPath = NSIndexPath(row: 0, section: 0)
+            self?.resultsTableView.scrollToRow(at: indexPath as IndexPath, at: .top, animated: false)
         }
     }
     
@@ -355,6 +360,8 @@ extension studentMapViewController: UITableViewDataSource, UITableViewDelegate, 
         print("Reloading like count of table view after user has liked a place")
         DispatchQueue.main.async {[weak self] in
             self?.resultsTableView.reloadData()
+            let indexPath = NSIndexPath(row: 0, section: 0)
+            self?.resultsTableView.scrollToRow(at: indexPath as IndexPath, at: .top, animated: false)
         }
     }
 }

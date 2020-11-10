@@ -50,14 +50,10 @@ class studentPlaceDetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var likeImage: UIButton!
     var displayPicture: UIImage = UIImage(named: "Default")!
     var isLiked = false;
-    
-    //@IBAction func imagePageButton(_ sender: Any) {
-        //self.performSegue(withIdentifier: "images", sender: nil)
-    //}
+
     @IBAction func imagePageButton(_ sender: Any) {
         self.performSegue(withIdentifier: "images", sender: nil)
     }
-    
     
     
     // Implement like button to add like to database and change appearance when places are liked or unliked
@@ -108,8 +104,9 @@ class studentPlaceDetailViewController: UIViewController, UIScrollViewDelegate {
         } else {
             likeImage.setImage(UIImage(systemName: "heart"), for: .normal)
         }
+        self.commentTableView.rowHeight = UITableView.automaticDimension
+        self.commentTableView.estimatedRowHeight = UITableView.automaticDimension
     }
-    
 
     /*
     // MARK: - Navigation
@@ -145,6 +142,8 @@ class studentPlaceDetailViewController: UIViewController, UIScrollViewDelegate {
                         print("Reloading comment table view to show comments")
                         DispatchQueue.main.async {[weak self] in
                             self?.commentTableView.reloadData()
+                            let indexPath = NSIndexPath(item: (self?.comments.count)! - 1, section: 0)
+                            self?.commentTableView.scrollToRow(at: indexPath as IndexPath, at: UITableView.ScrollPosition.bottom, animated: false)
                         }
                     } else {
                         print("No comments in database, so not reloading comment table view")
@@ -394,8 +393,15 @@ extension studentPlaceDetailViewController: UITableViewDataSource, UITableViewDe
                 self.comments.append(newComment)
                 DispatchQueue.main.async {[weak self] in
                     self?.commentTableView.reloadData()
+                    let indexPath = NSIndexPath(item: (self?.comments.count)! - 1, section: 0)
+                    self?.commentTableView.scrollToRow(at: indexPath as IndexPath, at: UITableView.ScrollPosition.bottom, animated: false)
                 }
             }
         }
+    }
+    // UITableViewAutomaticDimension calculates height of label contents/text
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        // Swift 4.2 onwards
+        return UITableView.automaticDimension
     }
 }

@@ -877,14 +877,19 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="acm103: &quot;My favorite study spot!&quot;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="374" translatesAutoresizingMaskIntoConstraints="NO" id="oHF-xL-DOS">
-                                                                    <rect key="frame" x="20" y="24.5" width="272.5" height="21"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="acm103: &quot;My favorite study spot!&quot;" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="374" translatesAutoresizingMaskIntoConstraints="NO" id="oHF-xL-DOS">
+                                                                    <rect key="frame" x="20" y="11" width="374" height="48"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="oHF-xL-DOS" firstAttribute="top" secondItem="hGI-VH-gHq" secondAttribute="top" constant="11" id="1hw-UJ-iJ6"/>
+                                                                <constraint firstAttribute="bottom" secondItem="oHF-xL-DOS" secondAttribute="bottom" constant="11" id="32S-Pr-Kr1"/>
+                                                                <constraint firstItem="oHF-xL-DOS" firstAttribute="leading" secondItem="hGI-VH-gHq" secondAttribute="leading" constant="20" symbolic="YES" id="Ak8-HL-Hhz"/>
+                                                                <constraint firstAttribute="trailing" secondItem="oHF-xL-DOS" secondAttribute="trailing" constant="20" symbolic="YES" id="VaZ-bV-fAf"/>
+                                                            </constraints>
                                                         </tableViewCellContentView>
                                                         <connections>
                                                             <outlet property="comment" destination="oHF-xL-DOS" id="cj8-Tg-cpf"/>
@@ -1497,21 +1502,26 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="commentCell" rowHeight="55" id="mlb-J7-oX9" customClass="commentTableViewCell" customModule="dukeLife" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="28" width="414" height="55"/>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="commentCell" rowHeight="70" id="mlb-J7-oX9" customClass="commentTableViewCell" customModule="dukeLife" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="28" width="414" height="70"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mlb-J7-oX9" id="1gV-qm-JaR">
-                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="acm103: &quot;My favorite study spot!&quot;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjb-NC-hcj">
-                                                                    <rect key="frame" x="20" y="16.5" width="272.5" height="22"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="acm103: &quot;My favorite study spot!&quot;" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjb-NC-hcj">
+                                                                    <rect key="frame" x="20" y="11" width="374" height="48"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="mjb-NC-hcj" secondAttribute="trailing" constant="20" symbolic="YES" id="0UX-hd-IyA"/>
+                                                                <constraint firstAttribute="bottom" secondItem="mjb-NC-hcj" secondAttribute="bottom" constant="11" id="6lo-tj-k4G"/>
+                                                                <constraint firstItem="mjb-NC-hcj" firstAttribute="leading" secondItem="1gV-qm-JaR" secondAttribute="leading" constant="20" symbolic="YES" id="IV6-un-2tC"/>
+                                                                <constraint firstItem="mjb-NC-hcj" firstAttribute="top" secondItem="1gV-qm-JaR" secondAttribute="top" constant="11" id="Kyr-7x-wbU"/>
+                                                            </constraints>
                                                         </tableViewCellContentView>
                                                         <connections>
                                                             <outlet property="comment" destination="mjb-NC-hcj" id="24o-Vz-nup"/>
@@ -1687,7 +1697,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fq2-Oi-87o">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fq2-Oi-87o">
                                 <rect key="frame" x="18" y="555" width="378" height="181"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -1778,7 +1788,7 @@
         <segue reference="yHN-yd-Pa1"/>
         <segue reference="FUw-Ed-bFr"/>
         <segue reference="2Rl-nu-3Ww"/>
-        <segue reference="IoX-zN-uP6"/>
+        <segue reference="58P-YG-oC3"/>
         <segue reference="Mwl-YY-y5E"/>
     </inferredMetricsTieBreakers>
     <resources>
