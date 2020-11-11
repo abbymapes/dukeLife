@@ -40,32 +40,38 @@ class guestSignUpViewController: UIViewController, UIScrollViewDelegate, UITextF
     @IBAction func SignUp_Button_guest(_ sender: Any) {
         if email.text?.isEmpty == true{
             print(" Please Insert a valid email ")
+            showAlert(message: " Please Insert a valid email ")
             return
         }
         if firstName.text?.isEmpty == true{
             print(" Please Insert a valid first name")
+            showAlert(message: " Please enter your first name ")
             return
         }
         if lastName.text?.isEmpty == true{
-            print(" Please Insert a valid last name")
+            print(" Please enter your last name ")
             return
         }
         if Password_guest.text?.isEmpty == true{
             print(" Please Insert a password ")
+            showAlert(message: " Please Insert a password ")
             return
         }
         if Confirm_Password_guest.text?.isEmpty == true {
             print("Please confirm password")
+            showAlert(message: " Please confirm password ")
             return
         }
         if Password_guest.text != Confirm_Password_guest.text {
             print("Make sure passwords match")
+            showAlert(message: " Passwords do not Match ")
             return
         }
         
         Auth.auth().createUser(withEmail: email.text!, password: Password_guest.text!) { authResult, error in
                 guard let user = authResult?.user, error == nil else {
                     print("Error in creating account")
+                    self.showAlert(message: " Error in creating account ")
                     return
                 }
                 print("\(user.email!) created")
@@ -109,6 +115,15 @@ class guestSignUpViewController: UIViewController, UIScrollViewDelegate, UITextF
     @objc func keyboardDidHide(notification: NSNotification) {
         scrollView.contentInset = UIEdgeInsets.zero
         scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
+    }
+    
+    
+    
+    func showAlert(message:String)
+    {
+    let alert = UIAlertController(title: message, message: "", preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    self.present(alert, animated: true)
     }
 
 }

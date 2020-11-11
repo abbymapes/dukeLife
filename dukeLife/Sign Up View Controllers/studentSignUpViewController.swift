@@ -10,7 +10,7 @@ import Firebase
 import FirebaseAuth
 
 class studentSignUpViewController: UIViewController, UIScrollViewDelegate, UITextFieldDelegate {
-    
+    var window: UIWindow?
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var Duke_Email: UITextField!
     @IBOutlet weak var netID: UITextField!
@@ -37,30 +37,46 @@ class studentSignUpViewController: UIViewController, UIScrollViewDelegate, UITex
     }
     
     @IBAction func SignUp_Button_stud(_ sender: Any) {
+
+       // var storyboard: UIStoryboard?
+      //  let stryboard =  UIStoryboard(name: "Main", bundle: nil)
+       // let homescreen = stryboard.instantiateViewController(withIdentifier: "Home")
+      //  self.window = UIWindow(frame: UIScreen.main.bounds)
+        
         if Duke_Email.text?.isEmpty == true{
             print(" Please Insert a valid Duke email ")
+            showAlert(message: " Please Insert a valid Duke email ")
             return
         }
         if netID.text?.isEmpty == true{
             print(" Please Insert a valid netID ")
+           
+           // self.window?.rootViewController = homescreen
+            showAlert(message: "please enter a NetID")
+            
+            
             return
         }
         if Password_stud.text?.isEmpty == true{
             print(" Please Insert a password ")
+            showAlert(message: " Please Insert a password ")
             return
         }
         if Confirm_Password_Stud.text?.isEmpty == true {
             print("Please confirm password")
+            showAlert(message: " Please confirm password ")
             return
         }
         if Password_stud.text != Confirm_Password_Stud.text {
             print("Make sure passwords match")
+            showAlert(message: " Passwords do not Match ")
             return
         }
         
         Auth.auth().createUser(withEmail: Duke_Email.text!, password: Password_stud.text!) { authResult, error in
                 guard let user = authResult?.user, error == nil else {
                     print("Error in creating account")
+                    self.showAlert(message: " Error in creating account ")
                     return
                 }
                 print("\(user.email!) created")
@@ -105,6 +121,14 @@ class studentSignUpViewController: UIViewController, UIScrollViewDelegate, UITex
         print("keyboard did hide")
         scrollView.contentInset = UIEdgeInsets.zero
         scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
+    }
+    
+    
+    func showAlert(message:String)
+    {
+    let alert = UIAlertController(title: message, message: "", preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    self.present(alert, animated: true)
     }
 
 }
