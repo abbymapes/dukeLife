@@ -36,8 +36,9 @@
 		19C81BC02545FFE80016E6C2 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C81BBF2545FFE80016E6C2 /* Comment.swift */; };
 		19C81BCB254605A50016E6C2 /* userProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C81BCA254605A50016E6C2 /* userProfileViewController.swift */; };
 		19C81BD62546205C0016E6C2 /* studentProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C81BD52546205C0016E6C2 /* studentProfileViewController.swift */; };
+		19DFE5DA255C6A950005CB82 /* addPlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DFE5D9255C6A950005CB82 /* addPlaceTableViewCell.swift */; };
+		19DFE5DF255C75560005CB82 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DFE5DE255C75560005CB82 /* TabViewController.swift */; };
 		19EB0E2C25549781007F4865 /* addPlaceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EB0E2B25549781007F4865 /* addPlaceTableViewController.swift */; };
-		19EB0E31255497D3007F4865 /* addPlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EB0E30255497D3007F4865 /* addPlaceTableViewCell.swift */; };
 		19EB0E362554A122007F4865 /* addDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EB0E352554A122007F4865 /* addDetailViewController.swift */; };
 		1ACD6B7BD031D90E181AAAA7 /* Pods_dukeLifeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90874FA06C4120B603BAFF5F /* Pods_dukeLifeTests.framework */; };
 		45CAC13B5CE6E72E1FB8DCC1 /* Pods_dukeLife_dukeLifeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 928465E209C0E9E560633BEF /* Pods_dukeLife_dukeLifeUITests.framework */; };
@@ -98,8 +99,9 @@
 		19C81BBF2545FFE80016E6C2 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		19C81BCA254605A50016E6C2 /* userProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userProfileViewController.swift; sourceTree = "<group>"; };
 		19C81BD52546205C0016E6C2 /* studentProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studentProfileViewController.swift; sourceTree = "<group>"; };
+		19DFE5D9255C6A950005CB82 /* addPlaceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addPlaceTableViewCell.swift; sourceTree = "<group>"; };
+		19DFE5DE255C75560005CB82 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		19EB0E2B25549781007F4865 /* addPlaceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addPlaceTableViewController.swift; sourceTree = "<group>"; };
-		19EB0E30255497D3007F4865 /* addPlaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = addPlaceTableViewCell.swift; path = /Users/codeplus/Documents/finalproj290/connecticut/dukeLife/addPlaceTableViewCell.swift; sourceTree = "<absolute>"; };
 		19EB0E352554A122007F4865 /* addDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addDetailViewController.swift; sourceTree = "<group>"; };
 		2C8035FCC82DB8E015710D37 /* Pods_dukeLife.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dukeLife.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		430AC6642EE2EC0CD97443F8 /* Pods-dukeLifeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dukeLifeTests.debug.xcconfig"; path = "Target Support Files/Pods-dukeLifeTests/Pods-dukeLifeTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -160,8 +162,8 @@
 				195C118F2549F93700DBAF49 /* studentImageCollectionViewController.swift */,
 				1935C4A4254389D7003A8EA4 /* studentMapViewController.swift */,
 				AC549F0725510D700027D883 /* CollectionViewCell.swift */,
-				19EB0E30255497D3007F4865 /* addPlaceTableViewCell.swift */,
 				19EB0E2B25549781007F4865 /* addPlaceTableViewController.swift */,
+				19DFE5D9255C6A950005CB82 /* addPlaceTableViewCell.swift */,
 				19EB0E352554A122007F4865 /* addDetailViewController.swift */,
 			);
 			path = "Student View Controllers";
@@ -231,6 +233,7 @@
 				19A868F725363EA000F92B03 /* SceneDelegate.swift */,
 				19A868F925363EA000F92B03 /* ViewController.swift */,
 				19A868FB25363EA000F92B03 /* Main.storyboard */,
+				19DFE5DE255C75560005CB82 /* TabViewController.swift */,
 				1935C3F22543442C003A8EA4 /* launchViewController.swift */,
 				19C81BBF2545FFE80016E6C2 /* Comment.swift */,
 				1935C3F7254346ED003A8EA4 /* Place.swift */,
@@ -519,12 +522,14 @@
 				192A7D99255238BB0083309D /* guestImageCollectionViewController.swift in Sources */,
 				19A868FA25363EA000F92B03 /* ViewController.swift in Sources */,
 				196E1547254732CF009EA3AB /* guestMapViewController.swift in Sources */,
+				19DFE5DA255C6A950005CB82 /* addPlaceTableViewCell.swift in Sources */,
 				196E1542254732B5009EA3AB /* guestPlaceDetailViewController.swift in Sources */,
 				1935C3E925433D24003A8EA4 /* studentSignUpViewController.swift in Sources */,
 				19C81BBB2545FF200016E6C2 /* commentTableViewCell.swift in Sources */,
 				AC549F0825510D700027D883 /* CollectionViewCell.swift in Sources */,
 				196E153D254732A8009EA3AB /* guestProfileViewController.swift in Sources */,
 				19A868F625363EA000F92B03 /* AppDelegate.swift in Sources */,
+				19DFE5DF255C75560005CB82 /* TabViewController.swift in Sources */,
 				1935C3EE25433D2F003A8EA4 /* guestSignUpViewController.swift in Sources */,
 				19A868F825363EA000F92B03 /* SceneDelegate.swift in Sources */,
 				1935C3F8254346ED003A8EA4 /* Place.swift in Sources */,
@@ -540,7 +545,6 @@
 				19EB0E362554A122007F4865 /* addDetailViewController.swift in Sources */,
 				1935C3FD2543477C003A8EA4 /* Coordinates.swift in Sources */,
 				1935C4A5254389D7003A8EA4 /* studentMapViewController.swift in Sources */,
-				19EB0E31255497D3007F4865 /* addPlaceTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

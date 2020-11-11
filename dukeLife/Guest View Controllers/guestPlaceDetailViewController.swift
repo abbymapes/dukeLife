@@ -256,6 +256,7 @@ extension guestPlaceDetailViewController: UITableViewDataSource, UITableViewDele
             let destVC = segue.destination as! guestImageCollectionViewController
             destVC.placeId = docId
             destVC.currentUserId = currentUserId
+            destVC.currentUsername = currentUsername
             
             
         // Segue to user page from comments
@@ -270,6 +271,8 @@ extension guestPlaceDetailViewController: UITableViewDataSource, UITableViewDele
             // Pass the selected object to the new view controller.
             destVC.name = selectedNetId
             destVC.userId = selectedUser
+            destVC.currentUserId = currentUserId
+            destVC.currentUsername = currentUsername
         }
     }
     

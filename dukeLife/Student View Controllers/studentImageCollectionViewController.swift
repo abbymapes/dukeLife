@@ -16,6 +16,7 @@ class studentImageCollectionViewController: UICollectionViewController {
     }
     var placeId = ""
     var currentUserId = ""
+    var currentUsername = ""
     var imageURLS: [String] = []
     var images : [UIImage] = []
 

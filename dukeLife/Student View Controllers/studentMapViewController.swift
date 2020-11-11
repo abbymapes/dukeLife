@@ -35,8 +35,8 @@ class studentMapViewController: UIViewController {
     var totalPlaces = 0
     
     // Replace with current user ID when auth is set up
-    var currentUserId = "test"
-    var currentUsername = "acm103"
+    var currentUserId = ""
+    var currentUsername = ""
     
     // Page buttons for results
     @IBOutlet weak var nextButton: UIButton!
@@ -55,6 +55,8 @@ class studentMapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
+        print(currentUsername)
+        print(currentUserId)
         super.viewDidLoad()
         resultsTableView.delegate = self
         resultsTableView.dataSource = self

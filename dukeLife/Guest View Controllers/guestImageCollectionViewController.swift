@@ -13,6 +13,7 @@ private let reuseIdentifier = "pictureCell"
 class guestImageCollectionViewController: UICollectionViewController {
     var placeId = ""
     var currentUserId = ""
+    var currentUsername = ""
     var imageURLS: [String] = []
     var images : [UIImage] = []
 

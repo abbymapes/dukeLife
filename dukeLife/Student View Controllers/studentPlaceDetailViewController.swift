@@ -348,7 +348,8 @@ extension studentPlaceDetailViewController: UITableViewDataSource, UITableViewDe
         if segue.identifier == "images" {
             let destVC = segue.destination as! studentImageCollectionViewController
             destVC.placeId = docId
-            destVC.currentUserId = currentUserId
+            destVC.currentUserId = self.currentUserId
+            destVC.currentUsername = self.currentUsername
             
             
         // Segue to user page from comments
@@ -363,6 +364,9 @@ extension studentPlaceDetailViewController: UITableViewDataSource, UITableViewDe
             // Pass the selected object to the new view controller.
             destVC.name = selectedNetId
             destVC.userId = selectedUser
+            
+            destVC.currentUsername = self.currentUsername
+            destVC.currentUserId = self.currentUserId
         }
     }
 
