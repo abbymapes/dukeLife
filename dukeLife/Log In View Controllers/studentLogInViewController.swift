@@ -10,11 +10,16 @@ import Firebase
 import FirebaseAuth
 
 class studentLogInViewController: UIViewController {
+    
+    var validSignIn = false;
+    var loggedInUserName = "";
+    var uid = "";
+    
     func showAlert(message:String)
     {
-    let alert = UIAlertController(title: message, message: "", preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-    self.present(alert, animated: true)
+        let alert = UIAlertController(title: message, message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
     
 
@@ -24,13 +29,32 @@ class studentLogInViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if !self.validSignIn  {
+            return false
+        }
+        return true
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Get the new view controller using segue.destination.
+        let tabBarC : UITabBarController = segue.destination as! UITabBarController
+        let mapView = tabBarC.viewControllers?.first as! studentMapViewController
+        let profView = tabBarC.viewControllers?.last as! studentProfileViewController
+        mapView.currentUserId = self.uid
+        mapView.currentUsername = self.loggedInUserName
+        
+        profView.currentUserId = self.uid
+        profView.currentUsername = self.loggedInUserName
+        
+    }
+    
     
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     
     @IBAction func NetID_field(_ sender: UITextField) {
-        
-        
     }
     
     @IBAction func Password_field(_ sender: UITextField) {
@@ -38,89 +62,38 @@ class studentLogInViewController: UIViewController {
     
     @IBAction func Log_in_button(_ sender: Any) {
   
-        
-        
-        
-        
     if email.text?.isEmpty == true || password.text?.isEmpty == true
         {
-            print(" Please Insert a valid Duke Email")
-            showAlert(message: " Please Insert email and password")
+            print("Please Insert a valid Duke Email")
+            showAlert(message: "Please enter your email and password.")
             return
         }
-        else{
+        else {
             Auth.auth().signIn(withEmail: self.email.text!, password: self.password.text!) { (user, error) in
-                        
-                        if error == nil {
-                            
-                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
-                                            self.present(vc!, animated: true, completion: nil)
+                    if let error = error {
+                        print(error)
+                        self.showAlert(message: error.localizedDescription)
+                        return
+                    }
+                
+                    guard let user = user?.user, error == nil else {
+                        self.showAlert(message: error!.localizedDescription)
+                        return
+                    }
+                        let db = Firestore.firestore()
+                        self.uid = user.uid
+                        print(user.uid)
+                        db.collection("students").document(user.uid).getDocument { (document, error) in
+                            if let document = document, document.exists {
+                                self.loggedInUserName = document.data()?["netId"] as! String
+                                self.validSignIn = true;
+                                self.performSegue(withIdentifier: "login", sender: nil)
+                            } else {
+                                self.showAlert(message: "There seemed to be an error retrieving your login information. Please try again.")
+                                return
+                            }
                         }
-                        else {
-                            
-                            //Tells the user that there is an error and then gets firebase to tell them the error
-                                          let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                                          
-                                          let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                                          alertController.addAction(defaultAction)
-                                          
-                                          self.present(alertController, animated: true, completion: nil)
-                          
-                        }
-        }
-        
-        //login()
-        
-    }
-    
-    /*// MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-        /*
-    func login (){
-        Auth.auth().signIn(withEmail: email.text!, password: password.text!) { (user, error) in
-            //if let strongSelf = self { self.showAlert(message: " Please enter correct info ")
-               // return }
-           // if let error = error, user == nil {
-               // print(error.localizedDescription)
-               // self.showAlert(message: " Please Insert a password ")
-            if error == nil {
-                //Print into the console if successfully logged in
-                              print("You have successfully logged in")
-                              
-                              //Go to the HomeViewController if the login is sucessful
-                              let VC = self.storyboard?.instantiateViewController(withIdentifier: "logged")
-                              self.present(VC!, animated: true, completion: nil)
             }
-            else{
-                //Tells the user that there is an error and then gets firebase to tell them the error
-                              let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                              
-                              let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                              alertController.addAction(defaultAction)
-                              
-                              self.present(alertController, animated: true, completion: nil)
-            }
-            //self?.checkinfo()
         }
-       
-}
-   */ /*
-    func checkinfo(){
-        if Auth.updateCurrentUser != nil {
-            print(Auth.auth().currentUser?.uid)
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(identifier: "logged")
-            vc.modalPresentationStyle = .overFullScreen
-            present(vc,animated: true)
-        }
-    } */
-    
-  
-}
+    }
 }
