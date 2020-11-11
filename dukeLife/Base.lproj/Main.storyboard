@@ -406,7 +406,7 @@
         <!--Profile-->
         <scene sceneID="bQm-3u-wNe">
             <objects>
-                <viewController id="UIM-9I-ZN7" customClass="studentProfileViewController" customModule="dukeLife" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="liked" id="UIM-9I-ZN7" customClass="studentProfileViewController" customModule="dukeLife" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="u6U-F2-FNm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -694,7 +694,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="khh-zL-6Bk">
             <objects>
-                <tabBarController id="Gso-Ea-4yM" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="logged" id="Gso-Ea-4yM" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="iIg-C6-SQJ"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="P5W-Is-cMr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -1292,7 +1292,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="Email:" destination="Xz5-Ck-XcH" eventType="editingDidEnd" id="2B8-tT-bYk"/>
                                     <action selector="Email:" destination="tTj-x2-wu1" eventType="editingDidEnd" id="pbL-eQ-VHX"/>
                                 </connections>
                             </textField>
@@ -1312,7 +1311,6 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="Password:" destination="tTj-x2-wu1" eventType="editingDidEnd" id="06l-S8-Gfv"/>
-                                    <action selector="Password:" destination="Xz5-Ck-XcH" eventType="editingDidEnd" id="NK3-Cc-rGN"/>
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCy-aS-1Ut">
@@ -1355,6 +1353,10 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Guest" image="person.circle.fill" catalog="system" selectedImage="person.circle.fill" id="e86-xl-yS5"/>
+                    <connections>
+                        <outlet property="email" destination="aVl-gE-hyd" id="jgu-Yp-aXA"/>
+                        <outlet property="password" destination="2mI-0h-PQk" id="vHD-m4-ZQa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Itb-z5-uqO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="tTj-x2-wu1" userLabel="Exit" sceneMemberID="exit"/>
@@ -1787,10 +1789,10 @@
     <inferredMetricsTieBreakers>
         <segue reference="jeF-dq-czp"/>
         <segue reference="yHN-yd-Pa1"/>
-        <segue reference="FUw-Ed-bFr"/>
+        <segue reference="qBa-tV-yRQ"/>
         <segue reference="Kzm-ZT-PFO"/>
         <segue reference="leB-58-hpu"/>
-        <segue reference="Mwl-YY-y5E"/>
+        <segue reference="5Db-CS-nKI"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="LoadingScreen" width="512" height="512"/>
