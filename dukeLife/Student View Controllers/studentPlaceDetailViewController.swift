@@ -399,6 +399,7 @@ extension studentPlaceDetailViewController: UITableViewDataSource, UITableViewDe
             }
         }
     }
+    
     // UITableViewAutomaticDimension calculates height of label contents/text
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         // Swift 4.2 onwards
