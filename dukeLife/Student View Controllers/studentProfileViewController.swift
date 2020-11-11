@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class studentProfileViewController: UIViewController {
 
@@ -14,8 +15,8 @@ class studentProfileViewController: UIViewController {
     @IBOutlet weak var userName: UILabel!
 
     // Replace with currentUserId when user log in is set up
-    var currentUserId = "test"
-    var currentUsername = "acm103"
+    var currentUserId = ""
+    var currentUsername = ""
     
     // List of places the user likes
     var placesList = [Place]()
@@ -156,78 +157,94 @@ extension studentProfileViewController: UITableViewDataSource, UITableViewDelega
         cell.likeButton.image = UIImage(systemName: "heart.fill")
         return cell
     }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "logout" {
+            do {
+                try Auth.auth().signOut()
+                print("user logged out")
+                return true
+            } catch let error as NSError {
+                showAlert(message: "\(error.localizedDescription) Please try again.")
+                return false
+            }
+        }
+        return true
+    }
 
     // MARK: - Navigation to Place Information
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
-        let destVC = segue.destination as! studentPlaceDetailViewController
-        let myRow = likedPlaces!.indexPathForSelectedRow
-        let place = placesList[myRow!.row]
-        
-        // Pass the selected information to the new view controller.
-        destVC.docId = place.docId
-        destVC.nameText = place.name
-        destVC.likeCountText = "\(place.likeCount)"
-        destVC.urlText = place.url
-        destVC.phoneNumberText = place.phoneNum
-        destVC.currentUsername = self.currentUsername
-        destVC.currentUserId = self.currentUserId
-        
-        // Information to write likes back to list when users like
-        // a row
-        destVC.delegate = self
-        destVC.selectedIndex = myRow!.row
-        
-        // Get display information
-        let url = URL(string: place.displayImg)
-        if (url != nil) {
-            if let data = try? Data(contentsOf: url!)
-            {
-                destVC.displayPicture = UIImage(data: data)!
-            }
-        } else {
-            destVC.displayPicture = UIImage(named: "Default")!
-        }
-        
-        // Create appropriate address
-        var addr = "";
-        if (place.address.display_address!.count > 0) {
-            var j = 0;
-            for line in place.address.display_address! {
-                if (j < place.address.display_address!.count - 1) {
-                    addr += line + "\n"
-                } else {
-                    addr += line
+        if (segue.identifier != "logout") {
+            let destVC = segue.destination as! studentPlaceDetailViewController
+            let myRow = likedPlaces!.indexPathForSelectedRow
+            let place = placesList[myRow!.row]
+            
+            // Pass the selected information to the new view controller.
+            destVC.docId = place.docId
+            destVC.nameText = place.name
+            destVC.likeCountText = "\(place.likeCount)"
+            destVC.urlText = place.url
+            destVC.phoneNumberText = place.phoneNum
+            destVC.currentUsername = self.currentUsername
+            destVC.currentUserId = self.currentUserId
+            
+            // Information to write likes back to list when users like
+            // a row
+            destVC.delegate = self
+            destVC.selectedIndex = myRow!.row
+            
+            // Get display information
+            let url = URL(string: place.displayImg)
+            if (url != nil) {
+                if let data = try? Data(contentsOf: url!)
+                {
+                    destVC.displayPicture = UIImage(data: data)!
                 }
-                j += 1
+            } else {
+                destVC.displayPicture = UIImage(named: "Default")!
             }
-        } else {
-            if (!place.address.address1!.isEmpty) {
-                addr += place.address.address1! + "\n"
+            
+            // Create appropriate address
+            var addr = "";
+            if (place.address.display_address!.count > 0) {
+                var j = 0;
+                for line in place.address.display_address! {
+                    if (j < place.address.display_address!.count - 1) {
+                        addr += line + "\n"
+                    } else {
+                        addr += line
+                    }
+                    j += 1
+                }
+            } else {
+                if (!place.address.address1!.isEmpty) {
+                    addr += place.address.address1! + "\n"
+                }
+                if (!place.address.address2!.isEmpty) {
+                    addr += place.address.address2! + "\n"
+                }
+                if (!place.address.address3!.isEmpty) {
+                    addr += place.address.address3! + "\n"
+                }
+                if (!place.address.city!.isEmpty) {
+                    addr += place.address.city! + ", "
+                }
+                addr += "NC"
+                if (!place.address.zip_code!.isEmpty) {
+                    addr += "\n" + place.address.zip_code!
+                }
             }
-            if (!place.address.address2!.isEmpty) {
-                addr += place.address.address2! + "\n"
+            destVC.addressText = addr
+            
+            // Set like icon for page
+            let selectedCell = likedPlaces!.cellForRow(at: myRow!) as! placeTableViewCell
+            var liked = true
+            if (selectedCell.likeButton.image == UIImage(systemName: "heart")) {
+                liked = false
             }
-            if (!place.address.address3!.isEmpty) {
-                addr += place.address.address3! + "\n"
-            }
-            if (!place.address.city!.isEmpty) {
-                addr += place.address.city! + ", "
-            }
-            addr += "NC"
-            if (!place.address.zip_code!.isEmpty) {
-                addr += "\n" + place.address.zip_code!
-            }
+            destVC.isLiked = liked
         }
-        destVC.addressText = addr
-        
-        // Set like icon for page
-        let selectedCell = likedPlaces!.cellForRow(at: myRow!) as! placeTableViewCell
-        var liked = true
-        if (selectedCell.likeButton.image == UIImage(systemName: "heart")) {
-            liked = false
-        }
-        destVC.isLiked = liked
     }
     
     /*
@@ -240,5 +257,12 @@ extension studentProfileViewController: UITableViewDataSource, UITableViewDelega
         DispatchQueue.main.async {[weak self] in
             self?.likedPlaces.reloadData()
         }
+    }
+    
+    func showAlert(message:String)
+    {
+    let alert = UIAlertController(title: message, message: "", preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    self.present(alert, animated: true)
     }
 }
