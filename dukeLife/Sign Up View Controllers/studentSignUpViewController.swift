@@ -17,6 +17,10 @@ class studentSignUpViewController: UIViewController, UIScrollViewDelegate, UITex
     @IBOutlet weak var Password_stud: UITextField!
     @IBOutlet weak var Confirm_Password_Stud: UITextField!
     
+    var validSignIn = false;
+    var loggedInUserName = "";
+    var uid = "";
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
             self.view.endEditing(true)
             return false
@@ -36,61 +40,80 @@ class studentSignUpViewController: UIViewController, UIScrollViewDelegate, UITex
         // Do any additional setup after loading the view.
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if !self.validSignIn  {
+            return false
+        }
+        return true
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Get the new view controller using segue.destination.
+        let tabBarC : UITabBarController = segue.destination as! UITabBarController
+        let mapView = tabBarC.viewControllers?.first as! studentMapViewController
+        let profView = tabBarC.viewControllers?.last as! studentProfileViewController
+        mapView.currentUserId = self.uid
+        mapView.currentUsername = self.loggedInUserName
+        
+        profView.currentUserId = self.uid
+        profView.currentUsername = self.loggedInUserName
+        
+    }
+    
     @IBAction func SignUp_Button_stud(_ sender: Any) {
-
-       // var storyboard: UIStoryboard?
-      //  let stryboard =  UIStoryboard(name: "Main", bundle: nil)
-       // let homescreen = stryboard.instantiateViewController(withIdentifier: "Home")
-      //  self.window = UIWindow(frame: UIScreen.main.bounds)
         
         if Duke_Email.text?.isEmpty == true{
-            print(" Please Insert a valid Duke email ")
-            showAlert(message: " Please Insert a valid Duke email ")
+            print(" Please enter a valid Duke email.")
+            showAlert(message: "Please enter a valid Duke email, ending in 'duke.edu'.")
             return
         }
         if netID.text?.isEmpty == true{
             print(" Please Insert a valid netID ")
-           
-           // self.window?.rootViewController = homescreen
-            showAlert(message: "please enter a NetID")
+            showAlert(message: "Please enter your NetID.")
             
             
             return
         }
         if Password_stud.text?.isEmpty == true{
             print(" Please Insert a password ")
-            showAlert(message: " Please Insert a password ")
+            showAlert(message: "Please enter a password.")
             return
         }
         if Confirm_Password_Stud.text?.isEmpty == true {
             print("Please confirm password")
-            showAlert(message: " Please confirm password ")
+            showAlert(message: "Please confirm your password.")
             return
         }
         if Password_stud.text != Confirm_Password_Stud.text {
             print("Make sure passwords match")
-            showAlert(message: " Passwords do not Match ")
+            showAlert(message: "Your passwords do not match. Please re-enter them.")
             return
         }
         
         Auth.auth().createUser(withEmail: Duke_Email.text!, password: Password_stud.text!) { authResult, error in
                 guard let user = authResult?.user, error == nil else {
                     print("Error in creating account")
-                    self.showAlert(message: " Error in creating account ")
+                    self.showAlert(message: error!.localizedDescription)
                     return
                 }
                 print("\(user.email!) created")
                 let db = Firestore.firestore()
-                let uid = user.uid
+                self.uid = user.uid
+                self.loggedInUserName = self.netID.text!
                 let email = user.email!
-                db.collection("students").document(uid).setData([
+                db.collection("students").document(user.uid).setData([
                     "netId": self.netID.text!,
                     "email": email
                 ]) { err in
                     if let err = err {
                         print("Error writing document for user: \(err)")
+                        self.showAlert(message: "There seemed to be an error retrieving your login information. Please try again.")
+                        return
                     } else {
                         print("Document successfully written for student!")
+                        self.validSignIn = true;
+                        self.performSegue(withIdentifier: "login", sender: nil)
                     }
                 }
             }

@@ -11,6 +11,10 @@ import FirebaseAuth
 
 class guestSignUpViewController: UIViewController, UIScrollViewDelegate, UITextFieldDelegate {
     
+    var validSignIn = false;
+    var loggedInUserName = "";
+    var uid = "";
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var firstName: UITextField!
@@ -37,55 +41,81 @@ class guestSignUpViewController: UIViewController, UIScrollViewDelegate, UITextF
         // Do any additional setup after loading the view.
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if !self.validSignIn  {
+            return false
+        }
+        return true
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Get the new view controller using segue.destination.
+        let tabBarC : UITabBarController = segue.destination as! UITabBarController
+        let mapView = tabBarC.viewControllers?.first as! guestMapViewController
+        let profView = tabBarC.viewControllers?.last as! guestProfileViewController
+        mapView.currentUserId = self.uid
+        mapView.currentUsername = self.loggedInUserName
+        
+        profView.currentUserId = self.uid
+        profView.currentUsername = self.loggedInUserName
+        
+    }
+    
     @IBAction func SignUp_Button_guest(_ sender: Any) {
         if email.text?.isEmpty == true{
             print(" Please Insert a valid email ")
-            showAlert(message: " Please Insert a valid email ")
+            showAlert(message: "Please enter a valid email.")
             return
         }
         if firstName.text?.isEmpty == true{
-            print(" Please Insert a valid first name")
-            showAlert(message: " Please enter your first name ")
+            print("Please enter a valid first name.")
+            showAlert(message: "Please enter your first name.")
             return
         }
         if lastName.text?.isEmpty == true{
-            print(" Please enter your last name ")
+            print("Please enter your last name or initial.")
             return
         }
         if Password_guest.text?.isEmpty == true{
             print(" Please Insert a password ")
-            showAlert(message: " Please Insert a password ")
+            showAlert(message: "Please enter a password.")
             return
         }
         if Confirm_Password_guest.text?.isEmpty == true {
             print("Please confirm password")
-            showAlert(message: " Please confirm password ")
+            showAlert(message: "Please confirm your password.")
             return
         }
         if Password_guest.text != Confirm_Password_guest.text {
             print("Make sure passwords match")
-            showAlert(message: " Passwords do not Match ")
+            showAlert(message: "Your passwords do not match. Please re-enter it.")
             return
         }
         
         Auth.auth().createUser(withEmail: email.text!, password: Password_guest.text!) { authResult, error in
                 guard let user = authResult?.user, error == nil else {
                     print("Error in creating account")
-                    self.showAlert(message: " Error in creating account ")
+                    self.showAlert(message: error!.localizedDescription)
                     return
                 }
                 print("\(user.email!) created")
                 let db = Firestore.firestore()
-                let uid = user.uid
+                self.uid = user.uid
+                self.loggedInUserName = self.firstName.text! + " " + self.lastName.text!
                 let email = user.email!
-                db.collection("guests").document(uid).setData([
+                db.collection("guests").document(user.uid).setData([
                     "name": self.firstName.text! + " " + self.lastName.text!,
                     "email": email
                 ]) { err in
                     if let err = err {
                         print("Error writing document for guest user: \(err)")
+                        self.showAlert(message: "There seemed to be an error retrieving your login information. Please try again.")
+                        return
                     } else {
                         print("Document successfully written for guest!")
+                        self.validSignIn = true;
+                        self.performSegue(withIdentifier: "login", sender: nil)
                     }
                 }
             }
