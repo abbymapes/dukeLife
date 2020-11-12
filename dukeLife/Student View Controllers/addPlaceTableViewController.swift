@@ -9,11 +9,11 @@ import UIKit
 import Firebase
 
 class addPlaceTableViewController: UITableViewController, UISearchBarDelegate {
-    
     struct coords: Codable {
         var latitude: Decimal?
         var longitude: Decimal?
     }
+    
     struct business: Codable {
         var id:String?
         var name: String?
@@ -47,14 +47,11 @@ class addPlaceTableViewController: UITableViewController, UISearchBarDelegate {
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return self.placeList.count
     }
     
@@ -74,7 +71,6 @@ class addPlaceTableViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func loadResults(_ searchString:String) {
-        let db = Firestore.firestore()
         let latitude = 36.0014
         let longitude = -78.9382
         let radius = 16093
@@ -92,28 +88,21 @@ class addPlaceTableViewController: UITableViewController, UISearchBarDelegate {
                 return
             }
             let response = response as! HTTPURLResponse
-            print(response)
             
-            // Ensure there is data returned from this HTTP response
             guard let content = data else {
                 print("No results found")
                 return
             }
-            // Decode JSON response
-            print(content)
             let decoder = JSONDecoder()
             do {
                 let apiResult = try decoder.decode(apiResponse.self, from: content)
                 let allPlaces = apiResult.businesses
-                
-                // Parse through recipes to retrieve information
                 self.placeList.removeAll()
                 for place in allPlaces {
                     if (!self.idsInDatabase.contains(place.id!)){
                         let c = Coordinates.init(latitude: place.coordinates?.latitude as! NSNumber, longitude: place.coordinates?.longitude as! NSNumber)!
                         let placeToAdd = Place.init(id: place.id!, name: place.name!, displayImg: place.image_url!, url: place.url!, phoneNum: place.display_phone!, address: place.location!, coords: c)!
                         self.placeList.append(placeToAdd);
-                        print("added \(placeToAdd.name)")
                     }
                     if self.placeList.count > 0 {
                         DispatchQueue.main.async {[weak self] in
@@ -128,7 +117,6 @@ class addPlaceTableViewController: UITableViewController, UISearchBarDelegate {
         dataTask.resume()
     }
     
-    // Search Bar function
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.searchBar.showsCancelButton = true
     }
@@ -150,72 +138,22 @@ class addPlaceTableViewController: UITableViewController, UISearchBarDelegate {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let db = Firestore.firestore()
-
-        // Configure the cell...
         let cell = tableView.dequeueReusableCell(withIdentifier: "addCell", for: indexPath) as! addPlaceTableViewCell
-        
-        // Set name and like count for cell
         cell.name.text = "\(indexPath.row + 1). \(placeList[indexPath.row].name)"
         return cell
     }
-    
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
         let destVC = segue.destination as! addDetailViewController
         let myRow = tableView.indexPathForSelectedRow
         let place = placeList[myRow!.row]
         
-        // Pass the selected information to the new view controller.
         destVC.place = place
         destVC.nameText = place.name
         destVC.urlText = place.url
         destVC.phoneNumberText = place.phoneNum
         
-        // Get display information
         let url = URL(string: place.displayImg)
         if (url != nil) {
             if let data = try? Data(contentsOf: url!)
@@ -226,7 +164,6 @@ class addPlaceTableViewController: UITableViewController, UISearchBarDelegate {
             destVC.displayPicture = UIImage(named: "Default")!
         }
         
-        // Create appropriate address
         var addr = "";
         if (place.address.display_address!.count > 0) {
             var j = 0;

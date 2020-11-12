@@ -8,14 +8,12 @@
 import Foundation
 
 class Comment {
-    //MARK: Properties
     var text: String
     var netId: String
     var userId: String
     var commentId: String
     var placeId: String
     
-    //MARK: Initializer
     init?(text: String, netId: String, userId: String, commentId: String, placeId: String) {
         if (text.isEmpty || netId.isEmpty || userId.isEmpty || commentId.isEmpty || placeId.isEmpty){
             return nil;

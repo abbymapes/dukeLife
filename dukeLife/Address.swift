@@ -8,7 +8,6 @@
 import Foundation
 
 class Address: Codable {
-    //MARK: Properties
     var address1: String?
     var address2: String?
     var address3: String?
@@ -17,7 +16,6 @@ class Address: Codable {
     var state: String?
     var display_address: [String]?
     
-    //MARK: Initializer
     init?(address1: String, address2: String, address3: String, city:String, zip_code:String, state:String, display_address: [String]) {
         if (address1.isEmpty && address2.isEmpty && address3.isEmpty && city.isEmpty && zip_code.isEmpty && state.isEmpty) {
             return nil;

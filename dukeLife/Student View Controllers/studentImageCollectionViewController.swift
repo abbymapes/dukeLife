@@ -23,21 +23,9 @@ class studentImageCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getImages()
-        // Do any additional setup after loading the view.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     // MARK: UICollectionViewDataSource
-    
     func getImages(){
         let db = Firestore.firestore()
         db.collection("images").whereField("placeId", isEqualTo: placeId).getDocuments(){
@@ -45,7 +33,6 @@ class studentImageCollectionViewController: UICollectionViewController {
                     if let err = err {
                         print("Error getting documents: \(err)")
                     } else {
-                        // Add each unique place to placeList as a Place object
                         for document in querySnapshot!.documents {
                             if (document.data()["imageUrl"] != nil){
                                 let urlString = document.data()["imageUrl"] as! String
@@ -61,7 +48,6 @@ class studentImageCollectionViewController: UICollectionViewController {
                                 }
                             }
                         }
-                        print("Reloading photos")
                         DispatchQueue.main.async {[weak self] in
                             self?.collectionView.reloadData()
                         }
@@ -69,70 +55,48 @@ class studentImageCollectionViewController: UICollectionViewController {
                             
         }
     }
-            
-    
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        print(images.count)
         return images.count
 
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        //let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CollectionViewCell
-    
         cell.image?.image = images[indexPath.row]
         return cell
     }
     
 
     // MARK: UICollectionViewDelegate
-
-    
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            self.performSegue(withIdentifier: "singleImageSegue", sender: indexPath)
     }
     
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "singleImageSegue"{
+            let selectedIndexPath = sender as? NSIndexPath
+            let vc = segue.destination as! ScrollViewController
+            vc.imgs = images
+            vc.index = selectedIndexPath!.row
+        }
+    }
     
-    // Uncomment this method to specify if the specified item should be selected
     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
 
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if (kind == UICollectionView.elementKindSectionFooter) {
             let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "FooterCollectionReusableView", for: indexPath)
-            // Customize footerView here
             return footerView
         } else if (kind == UICollectionView.elementKindSectionHeader) {
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderCollectionReusableView", for: indexPath)
-            // Customize headerView here
             return headerView
         }
         fatalError()
@@ -143,9 +107,7 @@ class studentImageCollectionViewController: UICollectionViewController {
 //MARK:- Image Picker
 extension studentImageCollectionViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    //Show alert to selected the media source type.
     private func showAlert() {
-
         let alert = UIAlertController(title: "Image Selection", message: "From where you want to pick this image?", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: {(action: UIAlertAction) in
             self.getImage(fromSourceType: .camera)
@@ -157,12 +119,8 @@ extension studentImageCollectionViewController: UIImagePickerControllerDelegate,
         self.present(alert, animated: true, completion: nil)
     }
 
-    //get image from source type
     private func getImage(fromSourceType sourceType: UIImagePickerController.SourceType) {
-
-        //Check is source type available
         if UIImagePickerController.isSourceTypeAvailable(sourceType) {
-
             let imagePickerController = UIImagePickerController()
             imagePickerController.delegate = self
             imagePickerController.sourceType = sourceType
@@ -172,10 +130,8 @@ extension studentImageCollectionViewController: UIImagePickerControllerDelegate,
 
     //MARK:- UIImagePickerViewDelegate.
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-
         self.dismiss(animated: true) { [weak self] in
-
-            guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
+            guard (info[UIImagePickerController.InfoKey.originalImage] as? UIImage) != nil else { return }
             if let imgUrl = info[UIImagePickerController.InfoKey.imageURL] as? URL{
                     let imgName = imgUrl.lastPathComponent
                     let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
@@ -204,17 +160,15 @@ extension studentImageCollectionViewController: UIImagePickerControllerDelegate,
                 // Upload the file to storage and store in database
                 let uploadTask = photoRef.putData(data as Data, metadata: nil) { (metadata, error) in
                       guard let metadata = metadata else {
-                        print("Error uploading \(error)")
+                        print("Error uploading \(String(describing: error))")
                         return
                       }
-                      // You can also access to download URL after upload.
                       photoRef.downloadURL { (url, error) in
                         guard let downloadURL = url else {
-                            print("Error uploading \(error)")
+                            print("Error uploading \(String(describing: error))")
                           return
                         }
                         let db = Firestore.firestore()
-                            
                         var ref: DocumentReference? = nil
                         ref = db.collection("images").addDocument(data: [
                             "imageUrl": downloadURL.absoluteString,
@@ -224,8 +178,6 @@ extension studentImageCollectionViewController: UIImagePickerControllerDelegate,
                         { err in
                             if let err = err {
                                 print("Error adding document: \(err)")
-                            } else {
-                                print("Image written with Document ID: \(ref!.documentID)")
                             }
                         }
                       }
@@ -237,5 +189,4 @@ extension studentImageCollectionViewController: UIImagePickerControllerDelegate,
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
-
 }

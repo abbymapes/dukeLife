@@ -8,7 +8,6 @@
 import Foundation
 
 class Place {
-    //MARK: Properties
     var id: String
     var name: String
     var displayImg: String
@@ -21,7 +20,6 @@ class Place {
     var likeCount: NSNumber
     var saved: Bool
     
-    //MARK: Initializer
     init?(id: String, name: String, displayImg: String, url: String, phoneNum: String, address: Address, coords: Coordinates) {
         if (name.isEmpty) {
             return nil;

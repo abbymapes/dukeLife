@@ -13,11 +13,9 @@ class guestProfileViewController: UIViewController {
     @IBOutlet weak var likedPlaces: UITableView!
     @IBOutlet weak var userName: UILabel!
     
-    // Replace with currentUserId when user log in is set up
     var currentUserId = ""
     var currentUsername = ""
     
-    // List of places the user likes
     var placesList = [Place]()
     var idList = [String]()
     
@@ -35,16 +33,6 @@ class guestProfileViewController: UIViewController {
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    /*
      Loads user netId from database
      */
     func loadUserInfo() {
@@ -56,8 +44,6 @@ class guestProfileViewController: UIViewController {
             if let document = document, document.exists {
                 let netId = document.data()!["name"] as! String
                 self.userName.text = netId
-            } else {
-                print("Current user not found")
             }
         }
     }
@@ -83,13 +69,11 @@ class guestProfileViewController: UIViewController {
                     let totalLikes = likedIds.count
                     var i = 1
                     
-                    // Go through each place the user likes and retrieve information about each place to create a Place object
                     for id in likedIds {
                         let docRef = db.collection("places").document(id)
                         docRef.getDocument { (document, error) in
                             if let document = document, document.exists {
-                                var id = document.documentID
-                                
+                                let id = document.documentID
                                 if (!self.idList.contains(id)) {
                                     let name = document.data()!["name"] as! String
                                     let address = Address.init(
@@ -116,21 +100,15 @@ class guestProfileViewController: UIViewController {
                                     self.idList.append(id)
                                     self.placesList.append(placeToDisplay)
                                     
-                                    // If we've reached the last place in the list, reload the data to display liked places
                                     if (i == totalLikes) {
                                         if self.placesList.count > 0 {
-                                            print("Reload liked places data \(self.placesList.count)")
                                             DispatchQueue.main.async {[weak self] in
                                                 self?.likedPlaces.reloadData()
                                             }
-                                        } else {
-                                            print("Not reloading liked places data, since none was found")
                                         }
                                     }
                                     i += 1
                                 }
-                            } else {
-                                print("Liked place does not exist for places ID")
                             }
                         }
                     }
@@ -149,11 +127,9 @@ extension guestProfileViewController: UITableViewDataSource, UITableViewDelegate
    }
     
    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // Configure the cell...
         let cell = tableView.dequeueReusableCell(withIdentifier: "placeCell", for: indexPath) as! placeTableViewCell
         
         cell.name.text = "\(self.placesList[indexPath.row].name)"
-    
         cell.likeCount.text = "\(self.placesList[indexPath.row].likeCount)"
         
         // Set saved button for user
@@ -183,7 +159,6 @@ extension guestProfileViewController: UITableViewDataSource, UITableViewDelegate
         if identifier == "logout" {
             do {
                 try Auth.auth().signOut()
-                print("user logged out")
                 return true
             } catch let error as NSError {
                 showAlert(message: "\(error.localizedDescription) Please try again.")
@@ -263,7 +238,6 @@ extension guestProfileViewController: UITableViewDataSource, UITableViewDelegate
     
     func update(index i: Int, status saved: Bool) {
         placesList.remove(at:i)
-        print("Reloading liked places in profile after user has unliked a place")
         DispatchQueue.main.async {[weak self] in
             self?.likedPlaces.reloadData()
         }

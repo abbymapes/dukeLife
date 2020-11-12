@@ -28,7 +28,6 @@ class guestPlaceDetailViewController: UIViewController, UIScrollViewDelegate {
     
     weak var delegate: GuestPlaceDetailViewControllerDelegate?
     
-    // Replace with current user id when auth is set up
     var currentUserId = ""
     var currentUsername = ""
     
@@ -48,31 +47,18 @@ class guestPlaceDetailViewController: UIViewController, UIScrollViewDelegate {
         self.performSegue(withIdentifier: "images", sender: nil)
     }
     
-    // Implement like button to add like to database and change appearance when places are liked or unliked
-    // Updates information in TableView of Map Scene via delegate.update method
     @IBAction func saveButton(_ sender: UIButton) {
         if (sender.currentImage == UIImage(systemName: "trash")) {
-            sender.setImage(UIImage(systemName: "plus"), for: .normal)
-            sender.setTitle("Save Place", for: .normal)
+            setUnsaved()
             unsavePlace()
-            sender.setTitleColor(white, for: .normal)
-            buttonOutline.backgroundColor = white
-            sender.backgroundColor = blue
-            sender.tintColor = white
         } else if (sender.currentImage == UIImage(systemName: "plus")) {
-            sender.setImage(UIImage(systemName: "trash"), for: .normal)
-            sender.setTitle("Unsave Place", for: .normal)
+            setSaved()
             savePlace()
-            sender.setTitleColor(blue, for: .normal)
-            buttonOutline.backgroundColor = blue
-            sender.backgroundColor = white
-            sender.tintColor = blue
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         commentTableView.delegate = self
         commentTableView.dataSource = self
         
@@ -81,19 +67,9 @@ class guestPlaceDetailViewController: UIViewController, UIScrollViewDelegate {
         NotificationCenter.default.addObserver(self,selector: #selector(self.keyboardDidHide(notification:)),
             name: UIResponder.keyboardDidHideNotification, object: nil)
         if (isSaved) {
-            saveButton.setImage(UIImage(systemName: "trash"), for: .normal)
-            saveButton.setTitle("Unsave Place", for: .normal)
-            saveButton.setTitleColor(blue, for: .normal)
-            buttonOutline.backgroundColor = blue
-            saveButton.backgroundColor = white
-            saveButton.tintColor = blue
+            setSaved()
         } else {
-            saveButton.setImage(UIImage(systemName: "plus"), for: .normal)
-            saveButton.setTitle("Save Place", for: .normal)
-            saveButton.setTitleColor(white, for: .normal)
-            buttonOutline.backgroundColor = white
-            saveButton.backgroundColor = blue
-            saveButton.tintColor = white
+            setUnsaved()
         }
         self.name.text = nameText
         self.address.text = addressText
@@ -106,46 +82,51 @@ class guestPlaceDetailViewController: UIViewController, UIScrollViewDelegate {
         self.commentTableView.estimatedRowHeight = UITableView.automaticDimension
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    /* Sets button appearance if user has saved it */
+    func setSaved() {
+        saveButton.setImage(UIImage(systemName: "trash"), for: .normal)
+        saveButton.setTitle("Unsave Place", for: .normal)
+        saveButton.setTitleColor(blue, for: .normal)
+        buttonOutline.backgroundColor = blue
+        saveButton.backgroundColor = white
+        saveButton.tintColor = blue
     }
-    */
+    
+    /* Sets button appearance if user hasn't saved it */
+    func setUnsaved() {
+        saveButton.setImage(UIImage(systemName: "plus"), for: .normal)
+        saveButton.setTitle("Save Place", for: .normal)
+        saveButton.setTitleColor(white, for: .normal)
+        buttonOutline.backgroundColor = white
+        saveButton.backgroundColor = blue
+        saveButton.tintColor = white
+    }
     
     /*
      * Loads comments for a place from the database to be displayed in comment section
      */
     func loadComments() {
         let db = Firestore.firestore()
-        // Queries all comments in database for current place ID ordered by time
+
         db.collection("comments").whereField("placeId", isEqualTo: self.docId).order(by: "time", descending: false).getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting comment documents: \(err)")
                 } else {
                     self.comments.removeAll()
                     for document in querySnapshot!.documents {
-                        // Create comment object and add it to the list of comments to be displayed
+
                         let netId = document.data()["netId"] as! String
                         let userId = document.data()["userId"] as! String
                         let comment = document.data()["comment"] as! String
                         let commentToAdd = Comment.init(text: comment, netId: netId, userId: userId, commentId: document.documentID, placeId: self.docId)!
                         self.comments.append(commentToAdd);
                     }
-                    // If there are comments for a post, load the comments
                     if self.comments.count > 0 {
-                        print("Reloading comment table view to show comments")
                         DispatchQueue.main.async {[weak self] in
                             self?.commentTableView.reloadData()
                             let indexPath = NSIndexPath(item: (self?.comments.count)! - 1, section: 0)
                             self?.commentTableView.scrollToRow(at: indexPath as IndexPath, at: UITableView.ScrollPosition.bottom, animated: false)
                         }
-                    } else {
-                        print("No comments in database, so not reloading comment table view")
                     }
                 }
         }
@@ -156,7 +137,6 @@ class guestPlaceDetailViewController: UIViewController, UIScrollViewDelegate {
      */
     func savePlace() {
         let db = Firestore.firestore()
-        // Double check if user has already liked the place
         var savedPlaces = 0
         db.collection("savedPlaces").whereField("placeId", isEqualTo: self.docId)
             .whereField("userId", isEqualTo: self.currentUserId).getDocuments(){ (querySnapshot, err) in
@@ -168,7 +148,6 @@ class guestPlaceDetailViewController: UIViewController, UIScrollViewDelegate {
                     }
                 }
             }
-        // If the user doesn't already like this place, add a new Like document to the database with placeID, time, and userId attributes
         if (savedPlaces == 0) {
             // Get time
             let timestamp = NSDate().timeIntervalSince1970
@@ -183,7 +162,6 @@ class guestPlaceDetailViewController: UIViewController, UIScrollViewDelegate {
                 if let err = err {
                     print("Error writing save document: \(err)")
                 } else {
-                    print("Saved place successfully written!")
                     self.delegate?.update(index: self.selectedIndex, status: true)
                 }
             }
@@ -195,8 +173,6 @@ class guestPlaceDetailViewController: UIViewController, UIScrollViewDelegate {
      */
     func unsavePlace() {
         let db = Firestore.firestore()
-        
-        // finds like for placeId and current user in database and deltes it
         db.collection("savedPlaces").whereField("placeId", isEqualTo: self.docId)
             .whereField("userId", isEqualTo: self.currentUserId).getDocuments(){ (querySnapshot, err) in
                 if let err = err {
@@ -207,7 +183,6 @@ class guestPlaceDetailViewController: UIViewController, UIScrollViewDelegate {
                             if let err = err {
                                 print("Error removing like document: \(err)")
                             } else {
-                                print("savedPlace was successfully removed!")
                                 self.delegate?.update(index: self.selectedIndex, status: false)
                             }
                         }
@@ -240,7 +215,6 @@ extension guestPlaceDetailViewController: UITableViewDataSource, UITableViewDele
    }
     
    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // Configure the cell...
         let cell = commentTableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! commentTableViewCell
         
         cell.comment.text = "\(comments[indexPath.row].netId): \(comments[indexPath.row].text)"
@@ -249,7 +223,6 @@ extension guestPlaceDetailViewController: UITableViewDataSource, UITableViewDele
 
 
     // MARK: - Navigation to User Profile
-    // Directs to the user who wrote the comment's profile
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         if segue.identifier == "images" {
@@ -257,9 +230,6 @@ extension guestPlaceDetailViewController: UITableViewDataSource, UITableViewDele
             destVC.placeId = docId
             destVC.currentUserId = currentUserId
             destVC.currentUsername = currentUsername
-            
-            
-        // Segue to user page from comments
         } else {
             let destVC = segue.destination as! userProfileViewController
             let myRow = commentTableView!.indexPathForSelectedRow
@@ -268,7 +238,6 @@ extension guestPlaceDetailViewController: UITableViewDataSource, UITableViewDele
             let selectedNetId = comment.netId
             let selectedUser = comment.userId
             
-            // Pass the selected object to the new view controller.
             destVC.name = selectedNetId
             destVC.userId = selectedUser
             destVC.currentUserId = currentUserId

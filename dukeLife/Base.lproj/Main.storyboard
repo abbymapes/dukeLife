@@ -162,6 +162,10 @@
                                                 <state key="normal" title="Already have an account?">
                                                     <color key="titleColor" systemColor="secondarySystemBackgroundColor"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="goToLogin:" destination="MBN-s8-58S" eventType="touchUpInside" id="tm9-WY-4ND"/>
+                                                    <segue destination="Xz5-Ck-XcH" kind="show" identifier="account" id="xC6-Tn-Zo9"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -330,7 +334,8 @@
                                                     <color key="titleColor" systemColor="secondarySystemBackgroundColor"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="1zA-Sd-9la" kind="show" id="yHN-yd-Pa1"/>
+                                                    <action selector="goToLogin:" destination="Q9Q-8M-WFH" eventType="touchUpInside" id="WuS-EM-zKf"/>
+                                                    <segue destination="1zA-Sd-9la" kind="show" identifier="account" id="zxs-Wz-KKF"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1100,6 +1105,7 @@
                     </collectionView>
                     <connections>
                         <outlet property="collectionView" destination="ktf-A1-TbW" id="VCV-rR-j40"/>
+                        <segue destination="5IY-iJ-67r" kind="show" identifier="singleImageSegue" id="C2l-AB-bRy"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i1A-Bk-oOa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1357,6 +1363,7 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Guest" image="person.circle.fill" catalog="system" selectedImage="person.circle.fill" id="e86-xl-yS5"/>
+                    <navigationItem key="navigationItem" id="6el-ZK-h0Q"/>
                     <connections>
                         <outlet property="email" destination="aVl-gE-hyd" id="T1p-TE-Z0K"/>
                         <outlet property="password" destination="2mI-0h-PQk" id="sL4-PQ-evq"/>
@@ -1487,7 +1494,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="tintColor" red="0.0" green="0.32549019610000002" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="See-fF-Tqh">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="See-fF-Tqh">
                                                 <rect key="frame" x="16" y="198" width="378" height="181"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
@@ -1691,6 +1698,9 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="sh5-lz-jd8"/>
+                    <connections>
+                        <segue destination="5IY-iJ-67r" kind="show" identifier="singleImageSegue" id="CXy-Qp-fjo"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GqH-y9-ohZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1789,12 +1799,46 @@
             </objects>
             <point key="canvasLocation" x="6671" y="967"/>
         </scene>
+        <!--Scroll View Controller-->
+        <scene sceneID="07X-uC-kst">
+            <objects>
+                <viewController id="5IY-iJ-67r" customClass="ScrollViewController" customModule="dukeLife" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RoX-am-bXs" customClass="ScrollViewController">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ip5-KL-tH1">
+                                <rect key="frame" x="0.0" y="211" width="414" height="308"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="scN-ej-LMe"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="70Y-Js-5gr"/>
+                            </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="cyP-2c-IZk">
+                                <rect key="frame" x="146" y="538" width="123" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </pageControl>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="yD3-27-yKu"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ils-Tm-LNO"/>
+                    <connections>
+                        <outlet property="pageControl" destination="cyP-2c-IZk" id="S7g-0B-bEg"/>
+                        <outlet property="scrollView" destination="Ip5-KL-tH1" id="mQd-I6-ikL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z2C-cZ-fW3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9175" y="-1065"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="CXy-Qp-fjo"/>
         <segue reference="jeF-dq-czp"/>
-        <segue reference="yHN-yd-Pa1"/>
+        <segue reference="zxs-Wz-KKF"/>
+        <segue reference="xC6-Tn-Zo9"/>
         <segue reference="FUw-Ed-bFr"/>
-        <segue reference="Kzm-ZT-PFO"/>
+        <segue reference="2Rl-nu-3Ww"/>
         <segue reference="leB-58-hpu"/>
         <segue reference="Mwl-YY-y5E"/>
         <segue reference="cfa-6o-UWP"/>

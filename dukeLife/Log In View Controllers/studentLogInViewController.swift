@@ -15,18 +15,14 @@ class studentLogInViewController: UIViewController {
     var loggedInUserName = "";
     var uid = "";
     
-    func showAlert(message:String)
-    {
+    func showAlert(message: String) {
         let alert = UIAlertController(title: message, message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true)
     }
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
@@ -37,17 +33,13 @@ class studentLogInViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        // Get the new view controller using segue.destination.
         let tabBarC : UITabBarController = segue.destination as! UITabBarController
         let mapView = tabBarC.viewControllers?.first as! studentMapViewController
         let profView = tabBarC.viewControllers?.last as! studentProfileViewController
         mapView.currentUserId = self.uid
         mapView.currentUsername = self.loggedInUserName
-        
         profView.currentUserId = self.uid
         profView.currentUsername = self.loggedInUserName
-        
     }
     
     
@@ -61,28 +53,21 @@ class studentLogInViewController: UIViewController {
     }
     
     @IBAction func Log_in_button(_ sender: Any) {
-  
-    if email.text?.isEmpty == true || password.text?.isEmpty == true
-        {
-            print("Please Insert a valid Duke Email")
+        if email.text?.isEmpty == true || password.text?.isEmpty == true {
             showAlert(message: "Please enter your email and password.")
             return
-        }
-        else {
+        } else {
             Auth.auth().signIn(withEmail: self.email.text!, password: self.password.text!) { (user, error) in
                     if let error = error {
-                        print(error)
                         self.showAlert(message: error.localizedDescription)
                         return
                     }
-                
                     guard let user = user?.user, error == nil else {
                         self.showAlert(message: error!.localizedDescription)
                         return
                     }
                         let db = Firestore.firestore()
                         self.uid = user.uid
-                        print(user.uid)
                         db.collection("students").document(user.uid).getDocument { (document, error) in
                             if let document = document, document.exists {
                                 self.loggedInUserName = document.data()?["netId"] as! String

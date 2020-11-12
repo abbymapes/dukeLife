@@ -11,34 +11,24 @@ import MapKit
 import Contacts
 
 class studentMapViewController: UIViewController {
-    // placeList contains all places that match selected type
-    // idsInList ensures that unique places are displayed from database
     var placeList = [Place]()
     var idsInList = [String]()
-    
-    // placesDisplayed contains the current 10 places displayed, to be mapped on the map
     var placesDisplayed = [Place]()
     
     @IBOutlet weak var resultsTableView: UITableView!
-    
-    // Determines selected type of places to display
+
     var selectedType = ""
     var types = ["Food": "food", "Bars":"bars", "Fun": "fun", "Coffee": "coffee"]
     @IBAction func typeSelector(_ sender: UISegmentedControl) {
         selectedType = types[sender.titleForSegment(at: sender.selectedSegmentIndex)!]!
         loadPlaces()
     }
-    
-    // Keeps track of current places displayed on page
     var currentStartIndex = 0
     var currentEndIndex = 0
     var totalPlaces = 0
-    
-    // Replace with current user ID when auth is set up
     var currentUserId = ""
     var currentUsername = ""
     
-    // Page buttons for results
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var prevButton: UIButton!
     
@@ -49,14 +39,11 @@ class studentMapViewController: UIViewController {
     @IBAction func previousPageButton(_ sender: Any) {
         getPrevPage()
     }
-    
-    // Map
+
     let locationManager = CLLocationManager()
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
-        print(currentUsername)
-        print(currentUserId)
         super.viewDidLoad()
         resultsTableView.delegate = self
         resultsTableView.dataSource = self
@@ -75,31 +62,15 @@ class studentMapViewController: UIViewController {
         super.viewWillAppear(animated)
         loadPlaces()
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     func loadPlaces() {
-        // Connect to database
         let db = Firestore.firestore()
-        
-        // Query all places for selected type
         db.collection("places").whereField("type", isEqualTo: selectedType).order(by: "likeCount", descending: true).getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
-                    // Empty previous places displayed
                     self.idsInList.removeAll()
                     self.placeList.removeAll()
-                    
-                    // Add each unique place to placeList as a Place object
                     for document in querySnapshot!.documents {
                         let id = document.documentID
                         if (!self.idsInList.contains(id)) {
@@ -129,14 +100,10 @@ class studentMapViewController: UIViewController {
                             self.placeList.append(placeToDisplay);
                         }
                     }
-                    // If there are results, display the first 10 of them
-                    // Set currentStartIndex to 0
-                    // Set currentEndIndex to min(totalPlaces, 9)
                     if self.placeList.count > 0 {
                         var i = 0
                         self.currentStartIndex = 0
                         self.totalPlaces = self.placeList.count
-                        // Removes previous places displayed
                         self.placesDisplayed.removeAll()
                         for place in self.placeList {
                             if (i < 10) {
@@ -147,24 +114,18 @@ class studentMapViewController: UIViewController {
                                 break
                             }
                         }
-                        // sets page buttons if there are more or previous results
                         self.setPageButtonsDisplay()
-                        
-                        print("Loading initial data from start index: \(self.currentStartIndex) to end index: \(self.currentEndIndex) for \(self.selectedType) category")
                         self.dropPins()
                         DispatchQueue.main.async {[weak self] in
                             self?.resultsTableView.reloadData()
                             let indexPath = NSIndexPath(row: 0, section: 0)
                             self?.resultsTableView.scrollToRow(at: indexPath as IndexPath, at: .top, animated: false)
                         }
-                    } else {
-                        print("No initial results returned from query")
                     }
                 }
         }
     }
     
-    // For each place in self.placesDisplayed, get place.coords.latitude and place.coords.longitude and drop the pin for each one
     func dropPins()  {
         self.mapView.removeAnnotations(mapView.annotations)
         var locations = [MKPointAnnotation]()
@@ -180,28 +141,22 @@ class studentMapViewController: UIViewController {
         }
     }
 
-    
     /*
      * Loads next 10 pages to be displayed from placesList
      */
     func getNextPage() {
-        // Remove current displayed places
         self.placesDisplayed.removeAll()
-        // Increment indices
         self.currentStartIndex = self.currentEndIndex + 1
         self.currentEndIndex = self.currentStartIndex + 9
         for i in self.currentStartIndex ..< self.currentEndIndex + 1 {
             if (i < self.totalPlaces) {
                 placesDisplayed.append(placeList[i])
             } else {
-                // If less than 10 results to display, set currentEndIndex appropriately
                 self.currentEndIndex = i - 1
                 break
             }
         }
-        // Reset page buttons
         setPageButtonsDisplay()
-        print("Reloading next page of data from index \(self.currentStartIndex) to index \(self.currentEndIndex)")
         dropPins()
         DispatchQueue.main.async {[weak self] in
             self?.resultsTableView.reloadData()
@@ -214,7 +169,6 @@ class studentMapViewController: UIViewController {
      * Loads previous 10 pages to be displayed from placesList
      */
     func getPrevPage() {
-        // Loads previous 10 places to be displayed
         self.placesDisplayed.removeAll()
         self.currentStartIndex = self.currentStartIndex - 10
         for i in self.currentStartIndex ..< self.currentStartIndex + 10 {
@@ -224,7 +178,6 @@ class studentMapViewController: UIViewController {
         }
         self.currentEndIndex = self.currentStartIndex + 9
         setPageButtonsDisplay()
-        print("Reloading previous page of data from index \(self.currentStartIndex) to index \(self.currentEndIndex)")
         dropPins()
         DispatchQueue.main.async {[weak self] in
             self?.resultsTableView.reloadData()
@@ -262,16 +215,10 @@ extension studentMapViewController: UITableViewDataSource, UITableViewDelegate, 
     
    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let db = Firestore.firestore()
-
-        // Configure the cell...
         let cell = tableView.dequeueReusableCell(withIdentifier: "placeCell", for: indexPath) as! placeTableViewCell
         
-        // Set name and like count for cell
         cell.name.text = "\(self.currentStartIndex + indexPath.row + 1). \(placesDisplayed[indexPath.row].name)"
         cell.likeCount.text = "\(placesDisplayed[indexPath.row].likeCount)"
-        
-        // Set like icon for user to filled heart if they like it and
-        // hollow heart if they don't
         db.collection("likes").whereField("placeId", isEqualTo: placesDisplayed[indexPath.row].docId)
             .whereField("userId", isEqualTo: self.currentUserId).getDocuments(){ (querySnapshot, err) in
                 if let err = err {
@@ -293,12 +240,10 @@ extension studentMapViewController: UITableViewDataSource, UITableViewDelegate, 
     
     // MARK: - Navigation to Place Information
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
         let destVC = segue.destination as! studentPlaceDetailViewController
         let myRow = resultsTableView!.indexPathForSelectedRow
         let place = placesDisplayed[myRow!.row]
-        
-        // Pass the selected information to the new view controller.
+
         destVC.docId = place.docId
         destVC.nameText = place.name
         destVC.likeCountText = "\(place.likeCount)"
@@ -306,13 +251,9 @@ extension studentMapViewController: UITableViewDataSource, UITableViewDelegate, 
         destVC.phoneNumberText = place.phoneNum
         destVC.currentUsername = self.currentUsername
         destVC.currentUserId = self.currentUserId
-        
-        // Information to write likes back to list when users like
-        // a row
         destVC.delegate = self
         destVC.selectedIndex = self.currentStartIndex + myRow!.row
         
-        // Get display information
         let url = URL(string: place.displayImg)
         if (url != nil) {
             if let data = try? Data(contentsOf: url!)
@@ -323,7 +264,6 @@ extension studentMapViewController: UITableViewDataSource, UITableViewDelegate, 
             destVC.displayPicture = UIImage(named: "Default")!
         }
         
-        // Create appropriate address
         var addr = "";
         if (place.address.display_address!.count > 0) {
             var j = 0;
@@ -355,7 +295,6 @@ extension studentMapViewController: UITableViewDataSource, UITableViewDelegate, 
         }
         destVC.addressText = addr
         
-        // Set like icon for page
         let selectedCell = resultsTableView!.cellForRow(at: myRow!) as! placeTableViewCell
         var liked = true
         if (selectedCell.likeButton.image == UIImage(systemName: "heart")) {
@@ -368,11 +307,9 @@ extension studentMapViewController: UITableViewDataSource, UITableViewDelegate, 
      * When a user likes a place from the page, this function is called to update the like count for the cell in the TableView
      */
     func update(index i: Int, count likeNum: NSNumber) {
-        print("Liked index in detail: \(i)")
         placeList[i].likeCount = likeNum
         placesDisplayed[i - self.currentStartIndex].likeCount = likeNum
         
-        print("Reloading like count of table view after user has liked a place")
         DispatchQueue.main.async {[weak self] in
             self?.resultsTableView.reloadData()
             let indexPath = NSIndexPath(row: 0, section: 0)
@@ -393,22 +330,14 @@ private extension MKMapView {
 
 
 extension studentMapViewController: MKMapViewDelegate {
-  // 1
-  func mapView(
-    _ mapView: MKMapView,
-    viewFor annotation: MKAnnotation
-  ) -> MKAnnotationView? {
-    // 2
-    // 3
+  func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
     let identifier = "places"
     var view: MKMarkerAnnotationView
-    // 4
     if let dequeuedView = mapView.dequeueReusableAnnotationView(
       withIdentifier: identifier) as? MKMarkerAnnotationView {
       dequeuedView.annotation = annotation
       view = dequeuedView
     } else {
-      // 5
       view = MKMarkerAnnotationView(
         annotation: annotation,
         reuseIdentifier: identifier)
@@ -419,8 +348,7 @@ extension studentMapViewController: MKMapViewDelegate {
     return view
   }
     
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView)
-  {
+  func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
     let selectedLat = (view.annotation?.coordinate.latitude)! as NSNumber
     let selectedLong = (view.annotation?.coordinate.longitude)! as NSNumber
     var ind = 0

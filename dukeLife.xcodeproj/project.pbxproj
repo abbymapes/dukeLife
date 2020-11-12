@@ -20,6 +20,8 @@
 		1935C4A5254389D7003A8EA4 /* studentMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1935C4A4254389D7003A8EA4 /* studentMapViewController.swift */; };
 		1935C4B02543BAD6003A8EA4 /* studentPlaceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1935C4AF2543BAD6003A8EA4 /* studentPlaceDetailViewController.swift */; };
 		19453D83255A253A00130517 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19453D82255A253A00130517 /* GoogleService-Info.plist */; };
+		19578D85255CAD67003F1152 /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19578D84255CAD67003F1152 /* ScrollViewController.swift */; };
+		19578D8A255CB02F003F1152 /* navigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19578D89255CB02F003F1152 /* navigationViewController.swift */; };
 		195C11902549F93700DBAF49 /* studentImageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195C118F2549F93700DBAF49 /* studentImageCollectionViewController.swift */; };
 		196E153D254732A8009EA3AB /* guestProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196E153C254732A8009EA3AB /* guestProfileViewController.swift */; };
 		196E1542254732B5009EA3AB /* guestPlaceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196E1541254732B5009EA3AB /* guestPlaceDetailViewController.swift */; };
@@ -37,7 +39,6 @@
 		19C81BCB254605A50016E6C2 /* userProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C81BCA254605A50016E6C2 /* userProfileViewController.swift */; };
 		19C81BD62546205C0016E6C2 /* studentProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C81BD52546205C0016E6C2 /* studentProfileViewController.swift */; };
 		19DFE5DA255C6A950005CB82 /* addPlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DFE5D9255C6A950005CB82 /* addPlaceTableViewCell.swift */; };
-		19DFE5DF255C75560005CB82 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DFE5DE255C75560005CB82 /* TabViewController.swift */; };
 		19EB0E2C25549781007F4865 /* addPlaceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EB0E2B25549781007F4865 /* addPlaceTableViewController.swift */; };
 		19EB0E362554A122007F4865 /* addDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EB0E352554A122007F4865 /* addDetailViewController.swift */; };
 		1ACD6B7BD031D90E181AAAA7 /* Pods_dukeLifeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90874FA06C4120B603BAFF5F /* Pods_dukeLifeTests.framework */; };
@@ -77,6 +78,8 @@
 		1935C4A4254389D7003A8EA4 /* studentMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studentMapViewController.swift; sourceTree = "<group>"; };
 		1935C4AF2543BAD6003A8EA4 /* studentPlaceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studentPlaceDetailViewController.swift; sourceTree = "<group>"; };
 		19453D82255A253A00130517 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		19578D84255CAD67003F1152 /* ScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewController.swift; sourceTree = "<group>"; };
+		19578D89255CB02F003F1152 /* navigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = navigationViewController.swift; sourceTree = "<group>"; };
 		195C118F2549F93700DBAF49 /* studentImageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studentImageCollectionViewController.swift; sourceTree = "<group>"; };
 		196E153C254732A8009EA3AB /* guestProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = guestProfileViewController.swift; sourceTree = "<group>"; };
 		196E1541254732B5009EA3AB /* guestPlaceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = guestPlaceDetailViewController.swift; sourceTree = "<group>"; };
@@ -100,7 +103,6 @@
 		19C81BCA254605A50016E6C2 /* userProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userProfileViewController.swift; sourceTree = "<group>"; };
 		19C81BD52546205C0016E6C2 /* studentProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studentProfileViewController.swift; sourceTree = "<group>"; };
 		19DFE5D9255C6A950005CB82 /* addPlaceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addPlaceTableViewCell.swift; sourceTree = "<group>"; };
-		19DFE5DE255C75560005CB82 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		19EB0E2B25549781007F4865 /* addPlaceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addPlaceTableViewController.swift; sourceTree = "<group>"; };
 		19EB0E352554A122007F4865 /* addDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addDetailViewController.swift; sourceTree = "<group>"; };
 		2C8035FCC82DB8E015710D37 /* Pods_dukeLife.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dukeLife.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,6 +167,7 @@
 				19EB0E2B25549781007F4865 /* addPlaceTableViewController.swift */,
 				19DFE5D9255C6A950005CB82 /* addPlaceTableViewCell.swift */,
 				19EB0E352554A122007F4865 /* addDetailViewController.swift */,
+				19578D89255CB02F003F1152 /* navigationViewController.swift */,
 			);
 			path = "Student View Controllers";
 			sourceTree = "<group>";
@@ -233,7 +236,7 @@
 				19A868F725363EA000F92B03 /* SceneDelegate.swift */,
 				19A868F925363EA000F92B03 /* ViewController.swift */,
 				19A868FB25363EA000F92B03 /* Main.storyboard */,
-				19DFE5DE255C75560005CB82 /* TabViewController.swift */,
+				19578D84255CAD67003F1152 /* ScrollViewController.swift */,
 				1935C3F22543442C003A8EA4 /* launchViewController.swift */,
 				19C81BBF2545FFE80016E6C2 /* Comment.swift */,
 				1935C3F7254346ED003A8EA4 /* Place.swift */,
@@ -529,13 +532,14 @@
 				AC549F0825510D700027D883 /* CollectionViewCell.swift in Sources */,
 				196E153D254732A8009EA3AB /* guestProfileViewController.swift in Sources */,
 				19A868F625363EA000F92B03 /* AppDelegate.swift in Sources */,
-				19DFE5DF255C75560005CB82 /* TabViewController.swift in Sources */,
 				1935C3EE25433D2F003A8EA4 /* guestSignUpViewController.swift in Sources */,
+				19578D85255CAD67003F1152 /* ScrollViewController.swift in Sources */,
 				19A868F825363EA000F92B03 /* SceneDelegate.swift in Sources */,
 				1935C3F8254346ED003A8EA4 /* Place.swift in Sources */,
 				1935C3E425433D17003A8EA4 /* guestLogInViewController.swift in Sources */,
 				1935C3F32543442C003A8EA4 /* launchViewController.swift in Sources */,
 				1935C4B02543BAD6003A8EA4 /* studentPlaceDetailViewController.swift in Sources */,
+				19578D8A255CB02F003F1152 /* navigationViewController.swift in Sources */,
 				19C81BC02545FFE80016E6C2 /* Comment.swift in Sources */,
 				19C81BD62546205C0016E6C2 /* studentProfileViewController.swift in Sources */,
 				195C11902549F93700DBAF49 /* studentImageCollectionViewController.swift in Sources */,
